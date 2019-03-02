@@ -33,9 +33,9 @@ var navs = [{
 	"href" : "page/404.html",
 	"spread" : false
 },{
-	"title" : "系统基本参数",
+	"title" : "系统设置",
 	"icon" : "&#xe631;",
-	"href" : "page/systemParameter/systemParameter.html",
+	"href" : "/admin/Config/index",
 	"spread" : false
 },{
 	"title" : "二级菜单演示",

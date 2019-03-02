@@ -43,3 +43,12 @@ create table member (
 	primary key(id),
 	key truename(truename)
 )engine=innodb default charset=utf8;
+
+
+-- 网站配置表
+
+create table qi_config (
+	id int unsigned not null auto_increment,
+	config text comment '网站配置参数',
+	primary key(id)
+)engine=innodb default charset=utf8;

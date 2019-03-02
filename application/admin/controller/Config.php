@@ -8,37 +8,43 @@ namespace app\admin\controller;
 use think\Controller;
 use think\Request;
 
-class Config extends Controller
+class Config extends Common
 {
     /**
-     * 显示资源列表
-     *
+     * 
+     *  配置项列表
      * @return \think\Response
      */
     public function index()
     {
-        //
+        return $this->fetch();
     }
 
-    /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
-     */
-    public function create()
-    {
-        //
-    }
+    
 
     /**
-     * 保存新建的资源
+     * 保存配置
      *
      * @param  \think\Request  $request
      * @return \think\Response
      */
     public function save(Request $request)
     {
-        //
+        $data = $request->post();
+        //dump($data);
+
+        //判断库中是否存在记录无则添加有则修改
+        $res = db('config')->find();
+        //将配置信息转换为json字符串
+        $config['config'] = json_encode($data,JSON_UNESCAPED_UNICODE);
+        dump($config);
+        die();
+        if(!$res){
+            $result = db('config')->insert($data);
+        }else{
+            
+        }
+
     }
 
     /**
