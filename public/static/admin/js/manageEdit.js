@@ -31,7 +31,8 @@ function ajaxForm(urls,parameter='') {
 						top.layer.msg(msg.msgs);
 		 				layer.closeAll("iframe");
 			 			//刷新父页面
-			 			parent.location.reload();
+			 			//parent.location.reload();
+			 			window.location = window.location;
         			},2000);		
 				}else{
 					setTimeout(function(){
