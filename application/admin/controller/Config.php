@@ -37,12 +37,17 @@ class Config extends Common
         $res = db('config')->find();
         //将配置信息转换为json字符串
         $config['config'] = json_encode($data,JSON_UNESCAPED_UNICODE);
-        dump($config);
-        die();
+
         if(!$res){
-            $result = db('config')->insert($data);
+            $result = db('config')->insert($config);
         }else{
-            
+            $result = db('config')->where('id',$res['id'])->update($config);
+        }
+
+        if($result){
+            return json(array('code'=>'1','msgs'=>'设置成功！'));
+        }else{
+            return json(array('code'=>'0','msgs'=>'设置失败，请稍后重试！'));
         }
 
     }
