@@ -12,58 +12,72 @@
 	<link rel="stylesheet" href="__ADMIN__/layui/css/layui.css" media="all" />
 	<link rel="stylesheet" href="__ADMIN__/css/font_eolqem241z66flxr.css" media="all" />
 	<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
-	
+	<!--引入CSS-->
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/vendor/webuploader-0.1.5/webuploader.css">
+    <!--引入JS-->
+    <script type="text/javascript" src="__ADMIN__/vendor/webuploader-0.1.5/webuploader.js"></script>
 </head>
 <body class="childrenBody">
 	
-	<form class="layui-form" style="width:60%;">
+	<form class="layui-form" style="width:60%;" enctype="multipart/form-data">
 		<div class="layui-form-item">
             <label class="layui-form-label">网站名称</label>
             <div class="layui-input-block">
-                <input type="text" name="title" value="" required  lay-verify="required" placeholder="请输入网站名称" autocomplete="off" class="layui-input">
+                <input type="text" name="title" value="{$data.title? $data.title: ''}" required  lay-verify="required" placeholder="请输入网站名称" autocomplete="off" class="layui-input">
             </div>
         </div>
-		
+		<div class="layui-form-item">
+            <label class="layui-form-label">网站logo</label>
+            <div class="layui-input-block">
+                <input type="text" name="logo" value="{$data.logo? $data.logo: ''}" autocomplete="off" class="layui-input">
+        <!--dom结构部分-->
+        <div id="uploader-demo">
+            <!--用来存放item-->
+            <div id="fileList" class="uploader-list"></div>
+            <div id="filePicker">上传Logo</div>
+        </div>
+            </div>
+        </div>
 		<div class="layui-form-item">
             <label class="layui-form-label">关键字</label>
             <div class="layui-input-block">
-                <input type="text" name="keyword" value="" required lay-verify="required" placeholder="请输入关键字" autocomplete="off" class="layui-input">
+                <input type="text" name="keyword" value="{$data.keyword? $data.keyword: ''}" required lay-verify="required" placeholder="请输入关键字" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">描述</label>
             <div class="layui-input-block">
-                <input type="text" name="desc" value="" required lay-verify="required" placeholder="请输入描述" autocomplete="off" class="layui-input">
+                <input type="text" name="desc" value="{$data.desc? $data.desc: ''}" lay-verify="" placeholder="请输入描述" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">电话</label>
             <div class="layui-input-inline">
-                <input type="text" name="phone" value="" required lay-verify="required" placeholder="请输入电话" autocomplete="off" class="layui-input">
+                <input type="text" name="phone" value="{$data.phone? $data.phone: ''}" required lay-verify="required" placeholder="请输入电话" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">在线客服</label>
             <div class="layui-input-inline">
-                <input type="text" name="online" value="" required lay-verify="required" placeholder="请输入QQ号码" autocomplete="off" class="layui-input">
+                <input type="text" name="online" value="{$data.online? $data.online: ''}" required lay-verify="required" placeholder="请输入QQ号码" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">公司地址</label>
             <div class="layui-input-block">
-                <input type="text" name="address" value="" required lay-verify="required" placeholder="请输入公司地址" autocomplete="off" class="layui-input">
+                <input type="text" name="address" value="{$data.address?$data.address:''}" required lay-verify="required" placeholder="请输入公司地址" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">网站状态</label>
             <div class="layui-input-inline">
-                <input type="checkbox" checked name="state" value="1" lay-skin="switch" lay-text="开启|关闭">
+                <input type="checkbox" {$data.state? 'checked':''} name="state" value="1" lay-skin="switch" lay-text="开启|关闭">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">关站提示</label>
             <div class="layui-input-block">
-                <input type="text" name="closeinfo" value="" required lay-verify="required" placeholder="请输入关站提示信息" autocomplete="off" class="layui-input">
+                <input type="text" name="closeinfo" value="{$data.closeinfo? $data.closeinfo: ''}" required lay-verify="required" placeholder="请输入关站提示信息" autocomplete="off" class="layui-input">
             </div>
         </div>
 		
@@ -73,6 +87,7 @@
 		    </div>
 		</div>
 	</form>
+    <script type="text/javascript" src="__ADMIN__/js/uploadsLogo.js"></script>
 	<script type="text/javascript" src="__ADMIN__/layui/layui.js"></script>
 	<script type="text/javascript" src="__ADMIN__/js/manageEdit.js"></script>
 	<script type="text/javascript">
