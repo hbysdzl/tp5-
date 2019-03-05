@@ -38,15 +38,15 @@ var navs = [{
 	"href" : "/admin/Config/index",
 	"spread" : false
 },{
-	"title" : "二级菜单演示",
+	"title" : "栏目管理",
 	"icon" : "&#xe61c;",
 	"href" : "",
 	"spread" : false,
 	"children" : [
 		{
-			"title" : "二级菜单1",
+			"title" : "栏目列表",
 			"icon" : "&#xe631;",
-			"href" : "",
+			"href" : "/admin/Category/index",
 			"spread" : false
 		},
 		{

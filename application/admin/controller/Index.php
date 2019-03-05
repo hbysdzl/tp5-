@@ -6,6 +6,7 @@ class Index extends Common
 {
     public function index()
     {	
+
     	config('title','欢迎使用本站管理系统');
         return $this->fetch();
     }

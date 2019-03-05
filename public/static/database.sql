@@ -52,3 +52,19 @@ create table qi_config (
 	config text comment '网站配置参数',
 	primary key(id)
 )engine=innodb default charset=utf8;
+
+-- 栏目表
+
+create table qi_category(
+	id int unsigned not null auto_increment,
+	name varchar(10) not null default '' comment '栏目名称',
+	pid int unsigned not null default 0 comment '上级栏目id',
+	sort int unsigned not null default 0 comment '排序',
+	pic varchar(255) not null default '' comment '栏目图片',
+	keyword varchar(100) not null default '' comment '关键词',
+	`desc` varchar(255) not null default '' comment '描述',
+	remark varchar(255) not null default '' comment '摘要',
+	comment text comment '内容',
+	primary key(id),
+	key name(name)
+)engine=innodb default charset=utf8;
