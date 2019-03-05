@@ -23,7 +23,7 @@
 		    <a class="layui-btn search_btn">查询</a>
 		</div>
 		<div class="layui-inline">
-			<a class="layui-btn linksAdd_btn" style="background-color:#5FB878">添加栏目</a>
+			<a class="layui-btn linksAdd_btn cate_add" style="background-color:#5FB878">添加栏目</a>
 		</div>
 		<div class="layui-inline">
 			<a class="layui-btn layui-btn-danger batchDel">批量删除</a>
@@ -35,7 +35,7 @@
 	<div class="layui-form links_list">
 	  	<table class="layui-table">
 		    <colgroup>
-				<col width="10">
+				<col width="12">
 				<col width="8%">
 				<col width="3%">
 				<col>
@@ -43,12 +43,8 @@
 				<col width="8%">
 				<col>
 				<col>
-				<col width="4%">
 				<col width="10%">
-				<col>
-				<col>
-				<col>
-				<col width="12%">
+				<col width="15%">
 		    </colgroup>
 		    <thead>
 				<tr>
@@ -61,9 +57,6 @@
 					<th>头像</th>
 					<th>注册时间</th>
 					<th>状态</th>
-					<th>最后登录时间</th>
-					<th>最后登录ip</th>
-					<th>最后登录地区</th>
 					<th>操作</th>
 				</tr> 
 		    </thead>
@@ -72,11 +65,8 @@
 		    	<tr>
 					<td><input type="checkbox" name="" lay-skin="primary" id="" ></td>
 					<td style="text-align:left;"></td>
-					<td>
-						
-					</td>
-					<td></td>
-					<td></td>
+					
+					
 					<td></td>
 					<td><img src="" width="60"></td>
 					<td></td>
@@ -103,28 +93,21 @@
 		
 	</div>
 	<script type="text/javascript" src="__ADMIN__/layui/layui.js"></script>
-	<script type="text/javascript" src="__ADMIN__/js/linksList.js"></script>
-	<script>
-		layui.use('layer', function(){
-	        var layer = layui.layer;
-	        $('.layui-btn-danger').on('click',function () {
-	            id = $(this).attr('id');
-	            layer.confirm('确定要删除该栏目吗?', {icon: 3, title:'系统提示'}, function(index){ 
-					$.get("{:url('delete')}",{id:id},function(msg){
-						if (msg.code == '1') {
-								layer.msg(msg.msg);
-			 				setTimeout(function(){
-			 					window.location.reload();
-			 				},1000);
-						}else{
-							layer.msg(msg.msg);
-						}
-					},'json');
-	                layer.close(index);
-	            });
-	          
-	        })
-    });
-	</script>
+	<script type="text/javascript" src="__ADMIN__/js/curdajax.js"></script>
+<script>
+	layui.config({
+		base : "__ADMIN__/js/"
+	}).use(['form','layer','jquery','laypage'],function(){
+		var form = layui.form(),
+		layer = parent.layer === undefined ? layui.layer : parent.layer,
+		laypage = layui.laypage,
+		$ = layui.jquery;
+		
+		ajaxadd('cate_add','添加栏目',"{:url('add')}");
+
+	});
+	
+	
+</script>
 </body>
 </html>

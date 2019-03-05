@@ -1,22 +1,11 @@
-layui.config({
-	base : "/static/admin/js/"
-}).use(['form','layer','jquery','laypage'],function(){
-	var form = layui.form(),
-		layer = parent.layer === undefined ? layui.layer : parent.layer,
-		laypage = layui.laypage,
-		$ = layui.jquery;
-	
- 
-})
 
-
-function ajaxadd() {
+function ajaxadd(btn,title,url) {
 	//添加管理员
-	$(".linksAdd_btn").click(function(){
+	$("."+btn).click(function(){
 		var index = layui.layer.open({
-			title : "添加管理员",
+			title : title,
 			type : 2,
-			content : "/admin/Manage/add",
+			content : url,
 			success : function(layero, index){
 				layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
 					tips: 3
@@ -74,6 +63,30 @@ function ajaxdel() {
 	          
 	})
 }
-	
+
+//复选框全选
+function checkboxs() {
+	//全选
+	form.on('checkbox(allChoose)', function(data){
+		var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]:not([name="show"])');
+		child.each(function(index, item){
+			item.checked = data.elem.checked;
+		});
+		form.render('checkbox');
+	});
+
+	//通过判断文章是否全部选中来确定全选按钮是否选中
+	form.on("checkbox(choose)",function(data){
+		var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]:not([name="show"])');
+		var childChecked = $(data.elem).parents('table').find('tbody input[type="checkbox"]:not([name="show"]):checked')
+		data.elem.checked;
+		if(childChecked.length == child.length){
+			$(data.elem).parents('table').find('thead input#allChoose').get(0).checked = true;
+		}else{
+			$(data.elem).parents('table').find('thead input#allChoose').get(0).checked = false;
+		}
+		form.render('checkbox');
+	})
+}
 
 	

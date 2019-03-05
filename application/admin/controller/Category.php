@@ -22,25 +22,21 @@ class Category extends Controller
         return $this->fetch();
     }
 
-    /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
-     */
-    public function create()
-    {
-        //
-    }
+    
 
     /**
-     * 保存新建的资源
+     * 添加栏目
      *
      * @param  \think\Request  $request
      * @return \think\Response
      */
-    public function save(Request $request)
+    public function add(Request $request)
     {
-        //
+        if($request->isPost()){
+
+        }else{
+            return $this->fetch();
+        }
     }
 
     /**
