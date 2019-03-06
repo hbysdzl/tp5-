@@ -8,6 +8,7 @@ namespace app\admin\controller;
 
 use think\Controller;
 use think\Request;
+use app\admin\model\Category as CategoryModel;
 
 class Category extends Controller
 {
@@ -18,8 +19,20 @@ class Category extends Controller
      */
     public function index()
     {
-        
-        return $this->fetch();
+        if(request()->isPost()){
+            $data = input('post.');
+            $res = CategoryModel::sort($data);
+            if ($res) {
+                
+                $this->success('排序成功！','index');
+            }
+        }else{
+            //获取数据
+            $data = CategoryModel::getcates(CategoryModel::order('sort desc')->select());
+            $this->assign('data',$data);
+            return $this->fetch(); 
+        }
+       
     }
 
     
@@ -34,43 +47,63 @@ class Category extends Controller
     {
         if($request->isPost()){
 
+            $data = $request->post();
+            $data['addtime'] = time(); 
+            $res = CategoryModel::insert($data);
+            if(!$res){
+                return json(['code'=>'0','msg'=>'添加失败！']);
+                exit;
+            }
+
+            return json(['code'=>'1','msg'=>'添加成功！']);
         }else{
+
+            //取出上级栏目
+            $data = CategoryModel::select();
+            $data = CategoryModel::getcates($data);
+            $this->assign('data',$data);
             return $this->fetch();
         }
     }
 
+   
     /**
-     * 显示指定的资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function read($id)
-    {
-        //
-    }
-
-    /**
-     * 显示编辑资源表单页.
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * 保存更新的资源
+     * 栏目编辑
      *
      * @param  \think\Request  $request
      * @param  int  $id
      * @return \think\Response
      */
-    public function update(Request $request, $id)
+    public function edit(Request $request)
     {
-        //
+        if($request->isPost()){
+            $data = $request->post();
+            //需判断禁止更新上级栏目为自身和其下级子栏目
+             $arrid = CategoryModel::getchildId($data['id']);
+             $arrid[] = $data['id'];
+             //dump($arrid);
+             if (in_array($data['pid'], $arrid)) {
+                return json(['code'=>'0','msg'=>'上级栏目选择错误！']);
+                exit;
+             }
+            
+            $res = CategoryModel::update($data);
+            if (!$res) {
+                
+                return json(['code'=>'0','msg'=>'更新失败！']);
+            }
+
+            return json(['code'=>'1','msg'=>'更新成功！']);
+        }else{
+            //取出上级栏目
+            $data = CategoryModel::getcates(CategoryModel::all());
+            $id = $request->param('id');
+            //取出编辑数据
+            $editData = CategoryModel::find($id);
+            $this->assign('editData',$editData);
+            $this->assign('data',$data);
+            return $this->fetch();
+        }
     }
 
     /**
@@ -80,7 +113,31 @@ class Category extends Controller
      * @return \think\Response
      */
     public function delete($id)
-    {
-        //
+    {   
+
+        //如果其有栏目则不可删除
+        $chlid = CategoryModel::where('pid',$id)->select();
+        if(count($chlid) > 0){
+            return json(['code'=>'0','msg'=>'错误！请先删除其子栏目']);
+        }
+
+        $res = CategoryModel::destroy($id);
+
+        if(!$res){
+            return json(['code'=>'0','msg'=>'删除失败！']);
+        }
+
+        return json(['code'=>'1','msg'=>'删除成功！']);
+
+
+    }
+
+    /*
+     **** 栏目图片上传
+    */
+
+    public function cateUpload() {
+
+        
     }
 }
