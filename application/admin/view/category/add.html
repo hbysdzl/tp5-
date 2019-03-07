@@ -117,8 +117,9 @@
 		//图片上传
 		layui.upload({
 			url: "{:url('cateUpload')}",
+			method:'post',
 		    success: function(res){
-			console.log(res); //上传成功返回值，必须为json格式
+				console.log(res); //上传成功返回值，必须为json格式
 			}
 		});
 		//提交数据

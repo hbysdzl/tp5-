@@ -49,9 +49,9 @@
 				<div class="layui-form-item">
 				    <label class="layui-form-label">栏目类型</label>
 				    <div class="layui-input-block">
-				      <input type="radio" name="type" value="1" title="列表" {$editData.type == '1'?'checked':''}><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon layui-anim-scaleSpring"></i><div>列表</div></div>
-				      <input type="radio" name="type" value="2" title="图片" {$editData.type == '2'?'checked':''}><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>图片</div></div>
-				      <input type="radio" name="type" value="3" title="单页" {$editData.type == '3'?'checked':''}><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>单页</div></div>
+				      <input type="radio" name="type" value="1" title="列表" {$editData->getData('type') == '1'?'checked':''}><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon layui-anim-scaleSpring"></i><div>列表</div></div>
+				      <input type="radio" name="type" value="2" title="图片" {$editData->getData('type') == '2'?'checked':''}><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>图片</div></div>
+				      <input type="radio" name="type" value="3" title="单页" {$editData->getData('type') == '3'?'checked':''}><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>单页</div></div>
 				    </div>
 		  		</div>
 		  		<div class="layui-form-item">

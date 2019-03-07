@@ -11,6 +11,13 @@ use think\Model;
 class Category extends Model
 {
     
+    //栏目类型获取器
+    public function getTypeAttr($value) {
+
+        $type = ['1'=>'列表','2'=>'图片','3'=>'单页'];
+        return $type[$value];
+    }
+
     //栏目无限极分类类表
     public static function getcates($data,$pid='0',$level='-1'){
 

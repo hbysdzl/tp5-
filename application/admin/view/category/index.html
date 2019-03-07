@@ -62,21 +62,15 @@
 					<td><input type="checkbox" value="{$vo.id}" lay-skin="primary" id="" ></td>
 					<td>{$vo.id}</td>
 					<td style="text-align: left;">{$vo.name}</td>
-					<td>
-						{switch name="$vo.type"}
-							{case value='1'}列表{/case}
-							{case value='2'}图片{/case}
-							{default}单页
-						{/switch}
-					</td>
+					<td>{$vo->type}</td>
 					<td>{$vo.keyword}</td>
 					<td>{$vo.addtime|date='Y-m-d H:i:s',###}</td>
 					<td><input type="text" style="width: 50px;" name="{$vo.id}" value="{$vo.sort}"></td>
 					<td>
-						 <button class="layui-btn layui-btn-sm layui-btn-normal" id="{$vo.id}">
+						 <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" id="{$vo.id}">
     						<i class="layui-icon">&#xe642;</i>
   						 </button>
-  						 <button class="layui-btn layui-btn-sm layui-btn-danger" id="{$vo.id}">
+  						 <button type="button" class="layui-btn layui-btn-sm layui-btn-danger" id="{$vo.id}">
     						<i class="layui-icon">&#xe640;</i>
   						 </button>
 					</td>
