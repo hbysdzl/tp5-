@@ -32,4 +32,26 @@ class Common extends Controller {
 
 
 	}
+
+	//单张图片删除
+	public function delimg($imgurl='') {
+		//echo $imgurl;
+		if($imgurl !== '' || !empty($imgurl)){
+
+			$filepath = ROOT_PATH.'public'.$imgurl;
+			//判断文件是否存在
+			if(file_exists($filepath)){
+				$res = unlink($filepath);
+				if($res){
+					return json(['code'=>'1','msg'=>'删除成功！']);
+				}
+
+				return json(['code'=>'0','msg'=>'删除失败！']);	
+			}
+
+			//文件不存在
+			return json(['code'=>'2','msg'=>'文件不存在']);
+
+		}
+	}
 }

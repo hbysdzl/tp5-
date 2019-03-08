@@ -16,6 +16,12 @@
     <script type="text/javascript" src="/static/vendor/utf8-php/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
     <script type="text/javascript" src="/static/vendor/utf8-php/ueditor.all.js"></script>
+    <style>
+		#imgs{margin: 10px 0 0 110px;}
+		#imgs span{position: relative;display: inline-block;}
+		#imgs span button{position: absolute;top: 3px;right: 3px;}
+		#imgs span img {border: 1px #ddd solid;padding: 3px;}
+    </style>
 </head>
 <body class="childrenBody">
 	<form class="layui-form" style="width:60%;">
@@ -66,6 +72,9 @@
 					<div class="layui-input-block">
 						<input type="text"  name="pic" class="layui-input linksUrl" lay-verify="required" placeholder="图片路径">
 						<input type="file" name="file" class="layui-upload-file">
+					</div>
+					<div id="imgs">
+						
 					</div>
 				</div>
 				<div class="layui-form-item">
@@ -119,13 +128,49 @@
 			url: "{:url('cateUpload')}",
 			method:'post',
 		    success: function(res){
-				console.log(res); //上传成功返回值，必须为json格式
+				//console.log(res);
+				if (res.code == '1') {
+					//将路径放入input框中
+					var vo = $('input[name=pic]').val();
+					if (vo == '') {
+						$('input[name=pic]').val(res.filepath);
+					}else{
+						$('input[name=pic]').val(vo+','+res.filepath);
+					}
+					
+					var html = '';
+					html = '<span>';
+					html += '<img src="'+res.filepath+'" width="100" />';
+					html += '<button onclick="delimg(this)" data="'+res.filepath+'" type="button" class="layui-btn layui-btn-small layui-btn-danger"><i class="layui-icon">&#xe640;</i></button>';
+					html += '</span>';
+
+					$('#imgs').append(html);
+				}else{
+					layer.alert(res.msg);
+				}
 			}
 		});
+
 		//提交数据
 		addformData(form,"{:url('add')}");
     	
     });
+
+    //删除图片
+    function delimg(obj) {
+    	//获取图片的地址
+    	var imgpath = $(obj).attr('data');
+    	$.ajax({
+    		type:'post',
+    		url:"{:url('Common/delimg')}",
+    		data:{'imgurl':imgpath},
+    		dataType:"json",
+    		success:function(res){
+    			console.log(res);
+    		}
+    	});
+    	//alert(imgpath);
+    }
 
     //实例化编辑器
     var ue = UE.getEditor('remark');

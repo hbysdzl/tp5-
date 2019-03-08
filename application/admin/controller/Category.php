@@ -136,8 +136,21 @@ class Category extends Controller
      **** 栏目图片上传
     */
 
-    public function cateUpload() {
+    public function cateUpload(Request $request) {
 
-        
+        $file = $request->file('file');
+
+        if($file){
+            $info = $file->move(ROOT_PATH.'public/uploads/category');
+            if($info){
+                //返回图片路径
+                $path = '/uploads/category/'.$info->getSaveName();
+                return json(['code'=>'1','msg'=>'上传成功','filepath'=>$path]);
+            }else{
+
+                return json(['code'=>'0','msg'=>$file->getError()]);
+
+            }
+        }
     }
 }
