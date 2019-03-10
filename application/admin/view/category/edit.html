@@ -16,6 +16,13 @@
     <script type="text/javascript" src="/static/vendor/utf8-php/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
     <script type="text/javascript" src="/static/vendor/utf8-php/ueditor.all.js"></script>
+    <style>
+		#imgs{margin: 10px 0 0 110px;}
+		#imgs span{position: relative;display: inline-block;}
+		#imgs span button{position: absolute;top: 3px;right: 3px;}
+		#imgs span img {border: 1px #ddd solid;padding: 3px;}
+    </style>
+
 </head>
 <body class="childrenBody">
 	<form class="layui-form" style="width:60%;">
@@ -65,8 +72,18 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label">图片上传</label>
 					<div class="layui-input-block">
-						<input type="text"  name="pic" value="{$editData.pic}" class="layui-input linksUrl" lay-verify="required" placeholder="图片路径">
+						<input type="hidden"  name="pic" value="{$editData.pic}" class="layui-input linksUrl">
 						<input type="file" name="file" class="layui-upload-file">
+					</div>
+					<div id="imgs">
+					{if condition="isset($editData.imgarr)"}
+					{volist name='$editData.imgarr' id='vo'}
+					  <span>
+					    <img src="{$vo}" width="100" />
+					    <button onclick="delimg(this)" data="{$vo}" type="button" class="layui-btn layui-btn-small layui-btn-danger"><i class="layui-icon">&#xe640;</i></button>
+				      </span>
+				    {/volist}
+				    {/if}
 					</div>
 				</div>
 				<div class="layui-form-item">
@@ -117,16 +134,68 @@
 		
 		//图片上传
 		layui.upload({
-			url: '',
+			url: "{:url('cateUpload')}",
+			method:'post',
 		    success: function(res){
-			console.log(res); //上传成功返回值，必须为json格式
+			     //console.log(res);
+			     if(res.code == '1'){
+			     	var html = '<span><img src="'+res.filepath+'" width="100" />';
+			         html += '<button onclick="delimg(this)" data="'+res.filepath+'" type="button" class="layui-btn layui-btn-small layui-btn-danger"><i class="layui-icon">&#xe640;</i></button>';
+			     	 html += '</span>';
+			     	$('#imgs').append(html);
+
+			     	//将路径写入文本框中
+			     	var urlstr = $('input[name=pic]').val();
+			     	if(urlstr == ''){
+			     		$('input[name=pic]').val(res.filepath);
+			     	}else{
+			     		$('input[name=pic]').val(urlstr+','+res.filepath);
+			     	}
+			     	layer.msg(res.msg);
+			     }else{
+
+			     	layer.msg(res.msg);
+			     }
 			}
 		});
+		
 		//提交数据
 		addformData(form,"{:url('edit')}");
     	
     });
 
+	//图片的删除
+	function delimg(obj){
+		var imgurl = $(obj).attr('data');
+		//alert(imgurl);
+		$.ajax({
+			type:'post',
+			url: "{:url('Common/delimg')}",
+			data: {'imgurl':imgurl},
+			dataType:'json',
+			success:function(res){
+				if(res.code == '2' || res.code == '1'){
+					//处理文本框内的值
+					var inputStr = $('input[name=pic]').val();
+					if(inputStr == imgurl){
+						//只有一张图片直接清空
+						$('input[name=pic]').val('');
+					}else{
+						str = inputStr.replace(imgurl+',','');
+						str = str.replace(','+imgurl,'');
+
+						$('input[name=pic]').val(str);
+					}
+
+					//将元素移除
+					$(obj).parent().remove();
+					layer.msg(res.msg);
+				}else{
+					layer.msg(res.msg);
+				}
+			}
+		});
+	}
     //实例化编辑器
     var ue = UE.getEditor('remark');
 	</script>

@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="__ADMIN__/layui/css/layui.css" media="all" />
 	<link rel="stylesheet" href="__ADMIN__/css/font_eolqem241z66flxr.css" media="all" />
 	<link rel="stylesheet" href="__ADMIN__/css/news.css" media="all" />
+	<script src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="childrenBody">
 	<form action="" method="post">
@@ -35,18 +36,18 @@
 	<div class="layui-form links_list">
 	  	<table class="layui-table">
 		    <colgroup>
-				<col width="3%">
-				<col width="3%">
-				<col width="25%">
+		    	<col width="6%">
 				<col width="5%">
+				<col width="25%">
+				<col width="8%">
 				<col>
 				<col width="12%">
-				<col width="8%">
+				<col width="5%">
 				<col width="15%">
 		    </colgroup>
 		    <thead>
 				<tr>
-					<th><input type="checkbox" lay-skin="primary" lay-filter="allChoose" id="allChoose"></th>
+					<td>伸缩</td>
 					<th>ID</th>
 					<th>栏目名称</th>
 					<th>类型</th>
@@ -58,8 +59,12 @@
 		    </thead>
 		    <tbody class="links_content">
 		    	{volist name="data" id="vo"}
-		    	<tr>
-					<td><input type="checkbox" value="{$vo.id}" lay-skin="primary" id="" ></td>
+		    	<tr id='{$vo.id}' pid='{$vo.pid}'>
+					<td>
+						<button class="layui-btn layui-btn-small shensuo" type="button" style="width: 30px;height:30px;">
+                           <i class="layui-icon">+</i>
+                        </button>
+					</td>
 					<td>{$vo.id}</td>
 					<td style="text-align: left;">{$vo.name}</td>
 					<td>{$vo->type}</td>
@@ -93,6 +98,44 @@
 	        ajaxdel("{:url('delete')}");
     });
 	
+
+	//栏目伸缩
+	$(function(){
+
+		//将非顶级栏目隐藏  jquer后代+属性选择器
+		$('tbody tr[pid != 0]').hide();
+
+		//展开子栏目
+		$('.shensuo').on('click',function(){
+			//获取按钮的状态
+			var btn = $(this).find('i').text();
+			//获取栏目的id
+			var cateid = $(this).parents('tr').attr('id');
+			if(btn == '+'){
+				//改变按钮状态并展开
+				$(this).find('i').text('-');
+				// if($('tbody tr').attr('pid') == cateid){
+
+				// }
+				$('tbody tr[pid = '+cateid+']').fadeIn();
+			}else{
+				$(this).find('i').text('+');
+				hiddenCate(cateid);
+			}
+		})
+	})
+
+	//递归隐藏所有的子栏目
+	function hiddenCate(id){
+		$('tbody tr[pid='+id+']').each(function(){
+			hiddenCate($(this).attr('id'));
+		})
+
+		$('tbody tr[pid='+id+']').fadeOut();
+
+		//改变所有子栏目的状态
+		$('tbody tr[pid='+id+']').find('.shensuo').find('i').text("+");
+	}
 </script>
 </body>
 </html>

@@ -56,4 +56,25 @@ var navs = [{
 			"spread" : false
 		}
 	]
-}]
+},{
+	"title" : "内容管理",
+	"icon" : "&#xe61c;",
+	"href" : "",
+	"spread" : false,
+	"children" : [
+		{
+			"title" : "内容列表",
+			"icon" : "&#xe631;",
+			"href" : "/admin/Article/index",
+			"spread" : false
+		},
+		{
+			"title" : "二级菜单2",
+			"icon" : "&#xe631;",
+			"href" : "",
+			"spread" : false
+		}
+	]
+}
+
+]

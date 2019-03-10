@@ -68,3 +68,23 @@ create table qi_category(
 	primary key(id),
 	key name(name)
 )engine=innodb default charset=utf8;
+
+
+-- 内容表
+create table qi_article(
+	id int unsigned not null auto_increment,
+	cid int unsigned not null default 0 comment '所属栏目id',
+	title varchar(50) not null default '' comment '标题',
+	keyword varchar(50) not null default '' comment '关键词',
+	`desc` varchar(200) not null default '' comment '描述',
+	remark varchar(100) not null default '' comment '摘要',
+	author varchar(10) not null default '' comment '作者',
+	views int unsigned not null default 0 comment '浏览次数',
+	content text comment '内容',
+	addtime int unsigned not null default 0 comment '添加时间',
+	toptime int unsigned not null default 0 comment '置顶时间戳',
+	istop tinyint not null default 0 comment '是否置顶 1是 0否',
+	primary key(id),
+	key cid(cid),
+	key title(title)
+)engine=innodb default charset=utf8;

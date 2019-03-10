@@ -100,6 +100,12 @@ class Category extends Common
             $id = $request->param('id');
             //取出编辑数据
             $editData = CategoryModel::find($id);
+            if($editData->pic !== ''){
+              //处理图片字符串为数组
+              $editData->imgarr = explode(',', $editData->pic);  
+            }
+            
+            //dump($editData);
             $this->assign('editData',$editData);
             $this->assign('data',$data);
             return $this->fetch();
@@ -120,13 +126,18 @@ class Category extends Common
         if(count($chlid) > 0){
             return json(['code'=>'0','msg'=>'错误！请先删除其子栏目']);
         }
-
+        $img = CategoryModel::field('pic')->find($id);
         $res = CategoryModel::destroy($id);
 
         if(!$res){
             return json(['code'=>'0','msg'=>'删除失败！']);
         }
 
+        //将硬盘的图片删除
+        $img = explode(',', $img['pic']);
+        foreach ($img as $k => $v) {
+            $this->delimg($v);
+        }
         return json(['code'=>'1','msg'=>'删除成功！']);
 
 
