@@ -32,9 +32,27 @@ class Article extends Common
     public function add(Request $request)
     {   
         if ($request->isPost()) {
-            # code...
+            $data = $request->post();
+            $data['addtime'] = time();
+            if(isset($data['istop'])){
+                //设置定置
+                $data['toptime'] = time();
+            }
+
+            $res = model('Article')->save($data);
+            if($res){
+                return json(['code'=>'1','msg'=>'添加成功！']);
+            }
+
+            return json(['code'=>'0','msg'=>'添加失败！']);
         }else{
 
+            //取出栏目数据
+            $cateModel = model('Category');
+            $data = $cateModel->field('id,name,pid')->select();
+            $cateData = $cateModel->getcates($data);
+            //dump($cateData);
+            $this->assign('cateData',$cateData);
             return $this->fetch();
         }
     }

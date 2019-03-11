@@ -30,6 +30,11 @@ class Common extends Controller {
 			exit;
 		}
 
+		//获取网站配置信息
+		$configRes = db('config')->find();
+		$config = json_decode($configRes['config'],true);
+		
+		$this->assign('config',$config);
 
 	}
 

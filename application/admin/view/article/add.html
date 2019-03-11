@@ -23,12 +23,10 @@
     	<label class="layui-form-label">所属栏目</label>
 		    <div class="layui-input-block">
 		      <select name="cid" lay-verify="required">
-		        <option value=""></option>
-		        <option value="0">北京</option>
-		        <option value="1">上海</option>
-		        <option value="2">广州</option>
-		        <option value="3">深圳</option>
-		        <option value="4">杭州</option>
+		        <option value="">--请选择--</option>
+		        {volist name='cateData' id='vo'}
+		        <option value="{$vo.id}">{$vo.name}</option>
+		        {/volist}
 		      </select>
 		    </div>
   	</div>
@@ -60,7 +58,7 @@
   		<div class="layui-form-item">
 			<label class="layui-form-label">作者</label>
 			<div class="layui-input-block">
-				<input type="text" name="author" class="layui-input linksUrl" lay-verify="required" placeholder="作者" style="width: 200px;">
+				<input type="text" name="author" value="{$config.author}" class="layui-input linksUrl" lay-verify="required" placeholder="作者" style="width: 200px;">
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -72,24 +70,23 @@
 		  <div class="layui-form-item">
     		<label class="layui-form-label">是否置顶</label>
     		<div class="layui-input-block">
-      			<input type="checkbox" name="switch" value="1" lay-skin="switch">
+      			<input type="checkbox" name="istop" value="1" lay-skin="switch" lay-text="是|否">
     		</div>
   		  </div>
   		  <div class="layui-form-item layui-form-text">
     		<label class="layui-form-label">内容</label>
 		    <div class="layui-input-block">
-		      <textarea name="content" id="content" class="layui-textarea"></textarea>
+		      <textarea name="content" id="content" ></textarea>
 		    </div>
   		</div>
 		<div class="layui-form-item">
 			<div class="layui-input-block">
-				<button class="layui-btn" lay-submit="" lay-filter="addLinks">立即提交</button>
+				<button class="layui-btn" lay-submit="" lay-filter="addData">立即提交</button>
 				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 		    </div>
 		</div>
 	</form>
 	<script type="text/javascript" src="__ADMIN__/layui/layui.js"></script>
-	<!-- <script type="text/javascript" src="__ADMIN__/js/linksAdd.js"></script> -->
 	<script type="text/javascript" src="__ADMIN__/js/curdajax.js"></script>
 	<script>
 		layui.use(['form','layer','jquery','laypage'], function(){
@@ -97,6 +94,9 @@
 	        var layer = layui.layer;
 	        laypage = layui.laypage;
 	        $ = layui.jquery;
+
+	        //提交数据
+	        addformData(form,"{:url('add')}");
         });
 	
 		//实例化编辑器
