@@ -8,7 +8,7 @@ namespace app\admin\controller;
 
 use think\Controller;
 use think\Request;
-
+use think\Loader;
 class Article extends Common
 {
     /**
@@ -19,6 +19,9 @@ class Article extends Common
     public function index()
     {   
         config('title','内容列表');
+        //获取数据
+        $data = model('Article')->alias('a')->field('a.*,c.name')->join('category c','a.cid=c.id')->paginate(3);
+        $this->assign('data',$data);
         return $this->fetch();
     }
 
@@ -33,13 +36,20 @@ class Article extends Common
     {   
         if ($request->isPost()) {
             $data = $request->post();
+
+            //后端数据验证
+            $validate = Loader::validate('Article');
+            if(!$validate->check($data)){
+                return json(['code'=>'0','msg'=>$validate->getError()]);
+            }
             $data['addtime'] = time();
             if(isset($data['istop'])){
                 //设置定置
                 $data['toptime'] = time();
             }
 
-            $res = model('Article')->save($data);
+            //过滤非数据表字段
+            $res = model('Article')->allowField(true)->save($data);
             if($res){
                 return json(['code'=>'1','msg'=>'添加成功！']);
             }

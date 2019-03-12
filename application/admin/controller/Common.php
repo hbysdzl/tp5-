@@ -7,7 +7,7 @@
 namespace app\admin\controller;
 
 use think\Controller;
-
+use think\Request;
 class Common extends Controller {
 
 
@@ -37,6 +37,25 @@ class Common extends Controller {
 		$this->assign('config',$config);
 
 	}
+
+	//图片上传
+    public function upload(Request $request) {
+
+        $file = $request->file('file');
+
+        if($file){
+            $info = $file->move(ROOT_PATH.'public/uploads');
+            if($info){
+                //返回图片路径
+                $path = '/uploads/'.$info->getSaveName();
+                return json(['code'=>'1','msg'=>'上传成功','filepath'=>$path]);
+            }else{
+
+                return json(['code'=>'0','msg'=>$file->getError()]);
+
+            }
+        }
+    }
 
 	//单张图片删除
 	public function delimg($imgurl='') {

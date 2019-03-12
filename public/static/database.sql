@@ -88,3 +88,13 @@ create table qi_article(
 	key cid(cid),
 	key title(title)
 )engine=innodb default charset=utf8;
+
+
+-- 内容图片表
+create table qi_pics (
+	id int unsigned not null auto_increment,
+	aid int unsigned not null default 0 comment '所属内容',
+	pic varchar(255) not null default '' comment '图片地址',
+	sort int unsigned not null default 0 comment '排序',
+	primary key(id)
+)engine=innodb default charset=utf8;

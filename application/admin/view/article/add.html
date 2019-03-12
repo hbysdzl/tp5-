@@ -16,10 +16,17 @@
     <script type="text/javascript" src="/static/vendor/utf8-php/ueditor.config.js"></script>
    <!--  //编辑器源码文件 -->
     <script type="text/javascript" src="/static/vendor/utf8-php/ueditor.all.js"></script>
+    <style>
+		#imgs{margin: 10px 0 0 110px;}
+		#imgs span{position: relative;display: inline-block;}
+		#imgs span button{position: absolute;top: 3px;right: 3px;}
+		#imgs span img {border: 1px #ddd solid;padding: 3px;}
+    </style>
 </head>
 <body class="childrenBody">
 	<form class="layui-form" style="width:60%;">
-	<div class="layui-form-item">
+	{:token()}
+	 <div class="layui-form-item">
     	<label class="layui-form-label">所属栏目</label>
 		    <div class="layui-input-block">
 		      <select name="cid" lay-verify="required">
@@ -29,8 +36,17 @@
 		        {/volist}
 		      </select>
 		    </div>
-  	</div>
-
+  	  </div>
+		<div class="layui-form-item">
+					<label class="layui-form-label">图片上传</label>
+					<div class="layui-input-block">
+						<input type="hidden"  name="pic" class="layui-input linksUrl" placeholder="图片路径">
+						<input type="file" name="file" class="layui-upload-file">
+					</div>
+					<div id="imgs">
+						
+					</div>
+				</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">标题</label>
 			<div class="layui-input-block">
@@ -89,12 +105,39 @@
 	<script type="text/javascript" src="__ADMIN__/layui/layui.js"></script>
 	<script type="text/javascript" src="__ADMIN__/js/curdajax.js"></script>
 	<script>
-		layui.use(['form','layer','jquery','laypage'], function(){
+		layui.use(['form','layer','jquery','laypage','upload'], function(){
 			var form = layui.form();
 	        var layer = layui.layer;
 	        laypage = layui.laypage;
 	        $ = layui.jquery;
 
+			//图片上传
+			layui.upload({
+				url: "{:url('common/upload')}",
+				method:'post',
+			    success: function(res){
+					//console.log(res);
+					if (res.code == '1') {
+						//将路径放入input框中
+						var vo = $('input[name=pic]').val();
+						if (vo == '') {
+							$('input[name=pic]').val(res.filepath);
+						}else{
+							$('input[name=pic]').val(vo+','+res.filepath);
+						}
+						
+						var html = '';
+						html = '<span>';
+						html += '<img src="'+res.filepath+'" width="100" />';
+						html += '<button onclick="delimg(this)" data="'+res.filepath+'" type="button" class="layui-btn layui-btn-small layui-btn-danger"><i class="layui-icon">&#xe640;</i></button>';
+						html += '</span>';
+
+						$('#imgs').append(html);
+					}else{
+						layer.alert(res.msg);
+					}
+				}
+			});	        
 	        //提交数据
 	        addformData(form,"{:url('add')}");
         });
