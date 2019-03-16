@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="childrenBody">
+	<form action="{:url('delall')}" method="post">
 	<blockquote class="layui-elem-quote news_search">
 		<div class="layui-inline">
 		    <div class="layui-input-inline">
@@ -26,25 +27,34 @@
 			<a class="layui-btn article_btn" style="background-color:#5FB878">添加内容</a>
 		</div>
 		<div class="layui-inline">
-			<a class="layui-btn layui-btn-danger batchDel">批量删除</a>
+			<button class="layui-btn layui-btn-warm batchDel">批量删除</button>
 		</div>
 		<div class="layui-inline">
-			<div class="layui-form-mid layui-word-aux">本页面刷新后除新添加的链接外所有操作无效，关闭页面所有数据重置</div>
+			<label class="layui-form-label">所属栏目</label>
+		    <div class="layui-input-block">
+		      <select name="cid" lay-filter="lanmu">
+		        <option value="">显示全部</option>
+		        {volist name='cateData' id='vo'}
+		        <option value="{$vo.id}" {eq name="$vo['id']" value="$Request.param.cid" }selected{/eq}>{$vo.name}</option>
+		        {/volist}
+		      </select>
+		    </div>
 		</div>
 	</blockquote>
 	<div class="layui-form links_list">
 	  	<table class="layui-table">
 		    <colgroup>
-				<col width="5%">
-				<col width="5%">
-				<col width="15%">
-				<col>
+				<col width="4%">
+				<col width="4%">
 				<col width="20%">
+				<col width="8%">
+				
 				<col width="10%">
 				<col width="7%">
+				<col width="7%">
+				<col width="10%">
+				<col width="8%">
 				<col width="15%">
-				<col>
-				<col>
 		    </colgroup>
 		    <thead>
 				<tr>
@@ -52,9 +62,9 @@
 					<th>ID</th>
 					<th style="text-align:left;">标题</th>
 					<th>所属栏目</th>
-					<th>关键词</th>
 					<th>作者</th>
 					<th>浏览次数</th>
+					<th>是否有图片</th>
 					<th>添加时间</th>
 					<th>是否置顶</th>
 					<th>操作</th>
@@ -63,20 +73,29 @@
 		    <tbody class="links_content">
 		    	{volist name='data' id='vo'}
 		    	<tr>
-					<td><input type="checkbox" lay-skin="primary" id="{$vo.id}" ></td>
+					<td><input type="checkbox" lay-skin="primary" class="chek" name="id[]" value="{$vo.id}" id="{$vo.id}" ></td>
 					<td>{$vo.id}</td>
 					<td style="text-align:left;">{$vo.title}</td>
 					<th>{$vo.name}</th>
-					<td>{$vo.keyword}</td>
 					<td>{$vo.author}</td>
 					<td>{$vo.views}</td>
+					<td>
+						{if condition="$vo['picnum'] > '0'"}
+						有{$vo.picnum}张图片
+						{else/}
+						暂无图片
+						{/if}
+					</td>
 					<td>{$vo.addtime|date='Y/m/d H:i',###}</td>
 					<td><input type="checkbox" value="{$vo.id}" name="istop" lay-filter="istop" lay-skin="switch" {$vo.istop == '1'? 'checked':''} lay-text="置顶|取消"></td>
-					<td>
-						 <button class="layui-btn layui-btn-sm layui-btn-normal" id="">
+					<td> 
+						 <button type="button" class="layui-btn layui-btn-sm tupian {$vo['picnum'] == '0'?'layui-btn-disabled':''}" id="{$vo.id}">
+    						<i class="layui-icon">&#xe64a;</i>
+  						 </button>
+						 <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" id="{$vo.id}">
     						<i class="layui-icon">&#xe642;</i>
   						 </button>
-  						 <button class="layui-btn layui-btn-sm layui-btn-danger" id="">
+  						 <button type="button" class="layui-btn layui-btn-sm layui-btn-danger" id="{$vo.id}">
     						<i class="layui-icon">&#xe640;</i>
   						 </button>
 					</td>
@@ -85,6 +104,7 @@
 		    </tbody>
 		</table>
 	</div>
+	</form>
 	<div id="page">
 		{$data->render()}
 	</div>
@@ -97,15 +117,75 @@
 	        laypage = layui.laypage;
 	        $ = layui.jquery;
 	        ajaxadd('article_btn','添加内容',"{:url('add')}");
-	        ajaxedit('栏目编辑',"{:url('edit','',false)}");
+	        ajaxedit('内容编辑',"{:url('edit','',false)}");
 	        ajaxdel("{:url('delete')}");
 
 
 	        //置顶
 	        form.on('switch(istop)',function(data){
-	        	console.log(data);
+	        	//console.log(data);
+	        	var id = data.value;
+	        	var status = data.elem.checked;
+	        	//console.log(status);
+	        	$.ajax({
+	        		url:"{:url('stick')}",
+	        		type:'post',
+	        		data:{'id':id,'status':status},
+	        		dataType:'json',
+	        		success:function(data){
+	        			if (data.code == '1') {
+	        				layer.msg(data.msg);
+	        				setTimeout(function(){
+	        					location.href = "{:url('index')}"
+	        				},2000)
+	        			}else{
+	        				layer.msg(data.msg);
+	        			}
+	        		}
+	        	})
 	        })
+
+	        //内容删除
+	        ajaxdel("{:url('delarticle')}");
+
+
+	        //全选
+	        form.on('checkbox(allChoose)', function(data){
+				  //console.log(data.elem.checked); //是否被选中，true或者false
+				  if(data.elem.checked){
+				  		$('.chek').prop('checked',true);
+				  		form.render();
+				  }else{
+				  		$('.chek').prop('checked',false);
+				  		form.render();
+				  }
+			});        
+
+	          
     	});
+
+    	//点击查看图片
+    	$('.tupian').on('click',function(){
+    		var aid = $(this).attr('id');
+    		//如果没有图片不展示
+    		if($(this).hasClass('layui-btn-disabled')){
+    			return false;
+    		}
+    		layer.open({
+                type: 2,
+                title:'图片',
+                area: ['800px', '500px'],
+                fixed: false, //不固定
+                maxmin: true,
+                content: '{:url("pics")}?aid='+aid
+            });
+    	})
+
+    	//监听筛选
+        $('select[name=cid]').on('change',function(){
+        	var cid = $(this).val();
+        	location.href = "{:url('index','',false)}/cid/"+cid
+        })  	
 	</script>
 </body>
 </html>

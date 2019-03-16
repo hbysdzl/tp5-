@@ -32,9 +32,9 @@ class Login extends Controller
                     'msg'       =>    $result['msg']
                 ];
 
-                //只保留最新30条记录
+                //只保留最新15条记录
                 $logRows = db('loginlog')->where('mid',$result['mid'])->count();
-                if($logRows == 30) {
+                if($logRows == 15) {
                     //查出当前用户最早的一条记录
                     $rows_min = db('loginlog')->where('mid',$result['mid'])->min('logintime');
                     //将最旧的记录删除

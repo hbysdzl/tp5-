@@ -67,6 +67,7 @@ class Common extends Controller {
 			if(file_exists($filepath)){
 				$res = unlink($filepath);
 				if($res){
+					$this->delDatabaseImg($imgurl);
 					return json(['code'=>'1','msg'=>'删除成功！']);
 				}
 
@@ -74,8 +75,18 @@ class Common extends Controller {
 			}
 
 			//文件不存在
+			$this->delDatabaseImg($imgurl);
 			return json(['code'=>'2','msg'=>'文件不存在']);
 
+		}
+	}
+
+	//删除数据库记录
+	protected function delDatabaseImg($pic = '') {
+
+		$res = db('pics')->where('pic',$pic)->find();
+		if($res){
+			db('pics')->where('pic',$res['pic'])->delete();
 		}
 	}
 }

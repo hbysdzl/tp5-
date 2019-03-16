@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>{:config('title')}</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="__ADMIN__/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="__ADMIN__/css/font_eolqem241z66flxr.css" media="all" />
+	<link rel="stylesheet" href="__ADMIN__/css/news.css" media="all" />
+	<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+</head>
+<body class="childrenBody">
+	
+	<blockquote class="layui-elem-quote news_search">
+		<div class="layui-inline">
+		    <div class="layui-input-inline">
+		    	<input type="text" value="" placeholder="请输入关键字" class="layui-input search_input">
+		    </div>
+		    <a class="layui-btn search_btn">查询</a>
+		</div>
+		<div class="layui-inline">
+			<a class="layui-btn article_btn" style="background-color:#5FB878">添加轮播图</a>
+		</div>
+	</blockquote>
+	<div class="layui-form links_list">
+	  	<table class="layui-table">
+		    <colgroup>
+				<col width="3%">
+				<col width="3%">
+				<col width="10%">
+				<col width="20%">
+				<col width="4%">
+				<col width="5%">
+				<col width="10%">
+				<col width="10%">
+		    </colgroup>
+		    <thead>
+		    	
+				<tr>
+					<th><input type="checkbox" lay-skin="primary" lay-filter="allChoose" id="allChoose"></th>
+					<th>ID</th>
+					<th>图片</th>
+					<th>标题</th>
+					<th>是否显示</th>
+					<th>排序</th>
+					<th>添加时间</th>
+					<th>操作</th>
+				</tr>
+
+		    </thead>
+		    <tbody class="links_content">
+		    	{volist name='data' id='vo'}
+		    	<tr>
+					<td><input type="checkbox" lay-skin="primary" class="chek" name="id[]" value="{$vo.id}" id="{$vo.id}" ></td>
+					<td>{$vo.id}</td>
+					<td><img src="{$vo.pic}" width="50"></td>
+					<td>{$vo.title}</td>
+					<td>
+						<input type="checkbox" name="isshow" lay-skin="switch" value="{$vo.id}" lay-filter="isshow" lay-text="显示|隐藏" {$vo.isshow?"checked":""}>
+					</td>
+					<td>
+						<input type="text" name="sort" value="{$vo.sort}" required lay-verify="required" placeholder="排序" autocomplete="off" class="layui-input sort" data="{$vo.id}">
+					</td>
+					<td>{$vo.addtime|date='Y-m-d H:i:s',###}</td>
+					<td> 
+						 <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" id="{$vo.id}">
+    						<i class="layui-icon">&#xe642;</i>
+  						 </button>
+  						 <button type="button" class="layui-btn layui-btn-sm layui-btn-danger" id="{$vo.id}">
+    						<i class="layui-icon">&#xe640;</i>
+  						 </button>
+					</td>
+				</tr>
+				{/volist}
+		    </tbody>
+		</table>
+	</div>
+	<div id="page">
+		
+	</div>
+	<script type="text/javascript" src="__ADMIN__/layui/layui.js"></script>
+	<script type="text/javascript" src="__ADMIN__/js/curdajax.js"></script>
+	<script>
+		layui.use(['form','layer','jquery','laypage'], function(){
+			var form = layui.form();
+	        var layer = layui.layer;
+	        laypage = layui.laypage;
+	        $ = layui.jquery;
+	        ajaxadd('article_btn','添加轮播图',"{:url('add')}");
+	        ajaxedit('轮播图编辑',"{:url('edit','',false)}");
+	        ajaxdel("{:url('delete')}");
+	        
+
+	        //显示与隐藏
+	        form.on('switch(isshow)', function(data){
+  					var value = '';
+  					value = data.elem.checked? '1': '0'
+  					id = data.value;
+  					//alert(id);
+  					$.get("{:url('setajax')}",{'type':'show','v':value,'id':id},function(res){
+  						layer.msg(res.msg);
+  					},'json');
+ 
+			});
+
+			//排序
+			$('input[name=sort]').on('change',function(){
+				var id = $(this).attr('data');
+				var val = $(this).val();
+				$.get("{:url('setajax')}",{'type':'sort','v':val,'id':id},function(res){
+					if (res.code == '1') {
+						layer.msg(res.msg,{time:2000},function(){
+							window.location = window.location;
+						})
+					}else{
+						layer.msg(res.msg);
+					}
+				},'json');
+			})  
+    	});
+
+	</script>
+</body>
+</html>

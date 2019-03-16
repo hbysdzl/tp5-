@@ -98,3 +98,17 @@ create table qi_pics (
 	sort int unsigned not null default 0 comment '排序',
 	primary key(id)
 )engine=innodb default charset=utf8;
+
+
+-- 轮播图表
+
+create table qi_banner (
+	id int unsigned not null auto_increment,
+	title varchar(100) not null default '' comment '图片标题',
+	pic varchar(255) not null default '' comment '图片地址',
+	url varchar(100) not null default '' comment '链接地址',
+	isshow enum('0','1') not null default '1' comment '是否显示',
+	sort tinyint unsigned not null default 0 comment '排序',
+	primary key(id),
+	key title(title)
+ )engine=innodb default charset=utf8;

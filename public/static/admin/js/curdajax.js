@@ -98,6 +98,46 @@ function addformData(form,urls) {
  	})
 }
 
+//删除图片
+function delimg(obj) {
+	//获取图片的地址
+	var imgpath = $(obj).attr('data');
+	$.ajax({
+		type:'post',
+		url:"/admin/Common/delimg",
+		data:{'imgurl':imgpath},
+		dataType:"json",
+		success:function(res){
+			//console.log(res);
+
+			if (res.code == '1' || res.code == '2') {
+
+				//处理文本框中的值
+				var urlstr = $('input[name=pic]').val();
+				if(urlstr == imgpath){
+					//只有一张图片
+					$('input[name=pic]').val('');
+				}else{
+					//存在多张图片
+					var str = urlstr.replace(imgpath+',','');
+					//console.log(str);
+					var str = str.replace(','+imgpath,'');
+					//console.log(str);
+					$('input[name=pic]').val(str);
+				}
+
+				//将元素移除
+				$(obj).parent().remove();
+				layer.msg(res.msg);
+			}else{
+
+				//删除失败
+				layer.msg(res.msg)
+			}
+		}
+	});
+	//alert(imgpath);
+}
 
 
 	
