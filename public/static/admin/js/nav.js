@@ -50,9 +50,9 @@ var navs = [{
 			"spread" : false
 		},
 		{
-			"title" : "二级菜单2",
+			"title" : "文件管理",
 			"icon" : "&#xe631;",
-			"href" : "",
+			"href" : "/admin/File/index",
 			"spread" : false
 		}
 	]
