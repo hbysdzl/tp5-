@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>文件管理</title>
 	<link rel="stylesheet" href="__ADMIN__/layui/css/layui.css">
+	<script src="/static/vendor/fontIcon/iconfont.js"></script>
 	<style>
 		.fileicon i{font-size:1.8em;color:#FFE88C;-webkit-text-stroke: 1px #F1C95F;}
 		.layui-table[lay-size="lg"] td, .layui-table[lay-size="lg"] th {
@@ -15,18 +16,28 @@
 		}
 		.cz{display:none;}
 		tr:hover .cz{display: block;}
+
+		/*图标字体样式*/
+		.icon {
+		  width: 1em;
+		  height: 1em;
+		  vertical-align: -0.15em;
+		  fill: currentColor;
+		  overflow: hidden;
+		  font-size: 25px;
+		}
 	</style>
 </head>
 <body style="padding:15px;">
 <div class="head-top">
 	<button class="layui-btn layui-btn-sm layui-btn-primary">
-	  <i class="layui-icon">上级目录</i>
+	  <i class="layui-icon"><a href="?currdir={$curdir}\..">上级目录</a></i>
 	</button>
 	<button class="layui-btn layui-btn-sm layui-btn-primary" id="reload">
 	  <i class="layui-icon">&#x1002;</i>
 	</button>
 	<button class="layui-btn layui-btn-sm layui-btn-danger">当前路径：{$curdir}</button>
-	<span class="layui-btn layui-btn-sm layui-btn-success" style="float:right;">共65个目录，35个文件</span>
+	<span class="layui-btn layui-btn-sm layui-btn-success" style="float:right;">共{$num.dir}个目录，{$num.file}个文件</span>
 </div>
 <div class="file-list">
 	<table class="layui-table" lay-size="lg" lay-skin="line">
@@ -42,8 +53,20 @@
 	  <tbody>
 	  {volist name="filename" id='vo'}
 		<tr>
-		  <td class="fileicon"><i class="layui-icon">{$vo.icon}</i> {$vo.filename}</td>
-		  <td>{$vo.size}B</td>
+		  <td class="fileicon">
+			  <a href="{$vo.sign? '?currdir='.$vo.currdir: 'javascript:void(0)'}">
+			  {if condition="$vo.sign eq '1'"}
+			  <i class="layui-icon">{$vo.icon}</i>
+			  {else/}
+			  <svg class="icon" aria-hidden="true">
+  			  	<use xlink:href="{$vo.icon}"></use>
+			  </svg>
+			  {/if}
+			  
+			  {$vo.filename}
+		  </a>
+		  </td>
+		  <td>{$vo.sign? '目录': fileFont($vo.size,2)}</td>
 		  <td>{$vo.ctime|date='Y-m-d H:i:s',###}</td>
 		  <td>{$vo.mtime|date="Y-m-d H:i:s",###}</td>
 		  <td>
@@ -59,14 +82,30 @@
 		{/volist}
 	  </tbody>
 	</table>
-	<div class="page">
-		<div class="layui-box layui-laypage layui-laypage-molv" style="float:right;" id="layui-laypage-4"><a href="javascript:;" class="layui-laypage-prev layui-disabled" data-page="0">上一页</a><span class="layui-laypage-curr"><em class="layui-laypage-em" style="background-color:#FF5722;"></em><em>1</em></span><a href="javascript:;" data-page="2">2</a><a href="javascript:;" data-page="3">3</a><a href="javascript:;" data-page="4">4</a><a href="javascript:;" data-page="5">5</a><span class="layui-laypage-spr">…</span><a href="javascript:;" class="layui-laypage-last" title="尾页" data-page="10">10</a><a href="javascript:;" class="layui-laypage-next" data-page="2">下一页</a></div>
-	</div>
+	<div class="page" id="page"></div>
 </div>
 
-<script src="vendor/js/jquery.js"></script>
-<script src="vendor/layui/layui.js"></script>
+<script src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+<script src="__ADMIN__/layui/layui.js"></script>
 	<script>
+	layui.use(['laypage','jquery'], function(){
+  		layui.laypage({
+  			cont: $('#page'),
+  			pages : {$pagepar.total},
+  			curr: {$pagepar.curr},
+  			skip: true,
+  			jump: function(obj, first){
+    			//得到了当前页，用于向服务端请求对应数据
+    			var curr = obj.curr;
+    			if (!first) {
+    				//需要带上当前页面路径
+    				location.href="?currdir={$curdir|urlencode=###}&p="+curr;	
+    			}
+  			}
+  		})
+	
+	});
+
 	$(function(){
 		$(window.parent.document).find('#righttitle').text($('title').text());
 		$('#reload').on('click',function(){
