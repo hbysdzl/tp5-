@@ -99,7 +99,8 @@
     			var curr = obj.curr;
     			if (!first) {
     				//需要带上当前页面路径
-    				location.href="?currdir={$curdir|urlencode=###}&p="+curr;	
+    				<?php $path = $curdir.'\\'?>
+    				location.href="?currdir={$path|urlencode=###}&p="+curr;	
     			}
   			}
   		})

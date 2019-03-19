@@ -22,8 +22,11 @@ class File extends Controller
         if($currdir){
             //判断目录是否存在
             if (is_dir($currdir)) {
+                dump($currdir);
+                dump(ROOT_PATH);
                 //访问权限控制
                 if (stripos($currdir, ROOT_PATH) === 0 && stripos($currdir, ROOT_PATH.'..') === false) {
+
                     chdir($currdir);
                 }
                 
