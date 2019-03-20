@@ -22,8 +22,6 @@ class File extends Controller
         if($currdir){
             //判断目录是否存在
             if (is_dir($currdir)) {
-                dump($currdir);
-                dump(ROOT_PATH);
                 //访问权限控制
                 if (stripos($currdir, ROOT_PATH) === 0 && stripos($currdir, ROOT_PATH.'..') === false) {
 
@@ -67,7 +65,7 @@ class File extends Controller
         array_multisort($srr,SORT_DESC,$data); //按标识进行降序排列
 
         //实现数组分页
-        $data = $this->arrPage($data,input('get.p'),'2');
+        $data = $this->arrPage($data,input('get.p'),'5');
         $this->assign([
                 'curdir'    =>  $rootdir,
                 'filename'  =>  $data['data'],
@@ -150,25 +148,60 @@ class File extends Controller
     }
 
     /**
-     * 显示指定的资源
+     * 文件删除
      *
      * @param  int  $id
      * @return \think\Response
      */
-    public function read($id)
+    public function filedel(Request $request)
     {
-        //
+        if($request->isAjax()){
+            $file = $request->get('file');
+            $file = urldecode($file);
+            //判断目录是否存在
+            if (is_dir($file)) {
+                //以数组方式列出目录中的文件和目录
+                $arr = scandir($file);
+
+                //非空目录不允许删除
+                if(count($arr) === 2){
+                    @rmdir($file);
+                    return json(['code'=>'1','msg'=>'目录删除成功！']);
+                }else{
+                    return json(['code'=>'0','msg'=>'非空目录(删除失败)']);
+                }
+                
+            }
+
+            //如果是文件
+            if (is_file($file)) {
+                @unlink($file);
+                return json(['code'=>'1','msg'=>'文件删除成功！']);
+            }
+
+            return json(['code'=>'0','msg'=>'操作失败请稍后重试！']);
+
+        }
     }
 
     /**
-     * 显示编辑资源表单页.
+     * 文件目录重命名
      *
      * @param  int  $id
      * @return \think\Response
      */
-    public function edit($id)
+    public function reName(Request $request)
     {
-        //
+        $file = $request->get('file');
+        $filepath = $request->get('filepath');
+        dump($filepath);
+        die();
+        //新的文件名
+        $newfile = dirname($filepath).DS.$file;  
+
+        dump($newfile);
+
+        //return $file.'----'.$filepath;
     }
 
     /**

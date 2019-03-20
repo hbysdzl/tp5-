@@ -71,9 +71,9 @@
 		  <td>{$vo.mtime|date="Y-m-d H:i:s",###}</td>
 		  <td>
 			<span class="cz">
-				<a class="filelink" href="javascript:;" onclick="DeleteFile('D:\\wwwroot\\hbrfhg.com\\foot.asp')">删除</a> |
+				<a class="filelink" href="javascript:;" onclick="DeleteFile('{$vo.currdir|urlencode=###}')">删除</a> |
 				<a class="filelink" href="javascript:;" onclick="OnlineEditFile(0,'D:\\wwwroot\\hbrfhg.com\\foot.asp')">编辑</a> |
-				<a class="filelink" href="javascript:;" onclick="ReName(0,'foot.asp')">重命名</a> |
+				<a class="filelink" href="javascript:;" onclick="ReName('{$vo.currdir|basename=###}','{$vo.currdir|urlencode=###}')">重命名</a> |
 				<a class="filelink" href="javascript:;" onclick="GetFileBytes('D:\\wwwroot\\hbrfhg.com\\foot.asp',369)">下载</a>
 				
 			</span>
@@ -88,7 +88,7 @@
 <script src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
 <script src="__ADMIN__/layui/layui.js"></script>
 	<script>
-	layui.use(['laypage','jquery'], function(){
+	layui.use(['laypage','jquery','layer'], function(){
   		layui.laypage({
   			cont: $('#page'),
   			pages : {$pagepar.total},
@@ -99,13 +99,44 @@
     			var curr = obj.curr;
     			if (!first) {
     				//需要带上当前页面路径
-    				<?php $path = $curdir.'\\'?>
+    				<?php $path = $curdir.DIRECTORY_SEPARATOR?>
     				location.href="?currdir={$path|urlencode=###}&p="+curr;	
     			}
   			}
-  		})
-	
+  		});
+
 	});
+
+
+	//文件删除
+	function DeleteFile(files) {
+		layer.confirm('确认要删除该文件（目录）吗?', {icon: 3, title:'系统提示'}, function(index){
+			$.get("{:url('filedel','',false)}",{'file':files},function(res){
+					layer.msg(res.msg);
+					if (res.code == '1') {
+						setTimeout(function(){
+							window.location = window.location;
+						},1500)
+					}
+			},'json')
+
+	    
+	    })
+
+	}
+
+	//文件重命名
+	function ReName(file,filepath){
+		//console.log(file+'--'+filepath);
+		layer.prompt({title: '请输入新的文件名',value:file}, function(value, index){
+  			
+			$.get("{:url('reName','',false)}",{'file':value,'filepath':filepath},function(){
+
+			},'json');
+  			layer.close(index);
+  			
+		});
+	}
 
 	$(function(){
 		$(window.parent.document).find('#righttitle').text($('title').text());
