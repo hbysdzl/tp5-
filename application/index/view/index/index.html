@@ -1,0 +1,601 @@
+{include file='public/header'/}
+<div class="touch-top mobile-section clearfix">
+<div class="touch-top-wrapper clearfix">
+<div class="touch-logo" skinobjectzone="HtmlLogo_2654"><a class href="#"><img src="__IMG__/logo.png" alt="中英双语响应式视觉艺术摄影类织梦模板(自适应手机端)"/></a></div>
+
+<div class="touch-navigation">
+<div class="touch-toggle">
+<ul>
+ <li class="touch-toggle-item-first"><a href="javascript:;" class="drawer-language" data-drawer="drawer-section-language"><i class="touch-icon-language"></i><span>语言</span></a></li>
+<li class="touch-toggle-item-last"><a href="javascript:;" class="drawer-menu" data-drawer="drawer-section-menu"><i class="touch-icon-menu"></i><span>导航</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="touch-toggle-content touch-top-home">
+<div class="drawer-section drawer-section-language">
+<ul class="touch-language clearfix" skinobjectzone="HtmlLanguage_2927">
+<li><a href="#">English</a></li>
+<li><a href="#">中文简体</a></li>
+</ul>
+</div>
+<div class="drawer-section drawer-section-menu">
+<div class="touch-menu" skinobjectzone="menu_3145">
+<ul>
+<li><a href="#"><span>首页</span></a></li>
+<li><a href="javascript:;"><span>关于我们</span><i class="touch-arrow-down"></i></a>
+<ul>
+<li><a href="#"><span>公司简介</span></a></li>
+<li><a href="#"><span>专业团队</span></a></li>
+<li><a href="#"><span>人才招聘</span></a></li>
+</ul>
+</li><li><a href="javascript:;"><span>摄影作品</span><i class="touch-arrow-down"></i></a>
+<ul>
+<li><a href="#"><span>服装摄影</span></a></li>
+<li><a href="#"><span>产品摄影</span></a></li>
+<li><a href="#"><span>皮具摄影</span></a></li>
+<li><a href="#"><span>化妆品摄影</span></a></li>
+<li><a href="#"><span>珠宝饰品</span></a></li>
+</ul>
+</li><li><a href="javascript:;"><span>模特资料</span><i class="touch-arrow-down"></i></a>
+
+<ul>
+<li><a href="#"><span>国内女模特</span></a></li>
+<li><a href="#"><span>国内男模特</span></a></li>
+<li><a href="#"><span>国外女模特</span></a></li>
+<li><a href="#"><span>国外男模特</span></a></li>
+</ul>
+</li>
+<li><a href="#"><span>摄影场景</span></a></li>
+<li><a href="javascript:;"><span>新闻资讯</span><i class="touch-arrow-down"></i></a>
+<ul>
+<li><a href="#"><span>公司新闻</span></a></li>
+<li><a href="#"><span>摄影学堂</span></a></li>
+</ul>
+</li>
+<li><a href="#"><span>联系我们</span></a></li>
+</ul>
+</div>
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+     
+
+     $(".touch-toggle a").click(function(event){
+
+      var className = $(this).attr("data-drawer");
+
+      
+
+      if( $("."+className).css('display') == 'none' ){      
+
+       $("."+className).slideDown().siblings(".drawer-section").slideUp();
+
+      }else{
+
+       $(".drawer-section").slideUp(); 
+
+      }
+
+      event.stopPropagation();
+
+     });
+
+     
+
+     $(document).click(function(){
+
+      $(".drawer-section").slideUp();     
+
+     })
+
+     
+
+     $('.touch-menu a').click(function(){     
+
+      if( $(this).next().is('ul') ){
+
+       if( $(this).next('ul').css('display') == 'none' ){
+
+        $(this).next('ul').slideDown();
+
+        $(this).find('i').attr("class","touch-arrow-up");     
+
+       }else{
+
+        $(this).next('ul').slideUp();
+
+        $(this).next('ul').find('ul').slideUp();
+
+        $(this).find('i').attr("class","touch-arrow-down");
+
+       }   
+
+      }
+
+     });
+
+    });
+
+</script></div>
+</div>
+
+<div id="a1portalSkin_headerAreaA" class="header"><a name="31822" id="31822"></a>
+<div class="module-default">
+<div class="module-inner">
+<div id="a1portalSkin_ctr107104107104_mainArea" class="module-content">
+<div class="slideshow carousel clearfix" style="height:700px; overflow:hidden;">
+<div id="carousel-107104">
+ <div class="carousel-item">
+<div class="carousel-img"><a href="javascript:;" target><img src="__IMG__/1-1610301K5510-L.jpg" height="700" alt="幻灯3"/></a></div>
+</div>
+<div class="carousel-item">
+<div class="carousel-img"><a href="javascript:;" target><img src="__IMG__/1-1610301K5360-L.jpg" height="700" alt="幻灯2"/></a></div>
+</div>
+<div class="carousel-item">
+<div class="carousel-img"><a href="javascript:;" target><img src="__IMG__/1-1610301K5230-L.jpg" height="700" alt="幻灯1"/></a></div>
+</div>
+</div>
+<div class="carousel-btn carousel-btn-fixed" id="carousel-page-107104"></div>
+</div>
+<script type="text/javascript">
+
+ 
+
+ $(window).bind("load resize",function(){
+
+  $("#carousel-107104").carouFredSel({
+
+   width       : '100%',
+
+   items  : { visible : 1 },
+
+   auto     : { pauseOnHover: true, timeoutDuration:5000 },
+
+   swipe     : { onTouch:true, onMouse:true },
+
+   pagination  : "#carousel-page-107104"
+
+   //prev   : { button:"#carousel-prev-107104"},
+
+   //next   : { button:"#carousel-next-107104"},
+
+   //scroll   : { fx : "crossfade" }
+
+  });
+
+ });
+
+</script></div>
+</div>
+</div>
+</div>
+
+<section class="main">
+<div id="a1portalSkin_mainArea" class="full-screen clearfix">
+<a name="31834" id="31834"></a>
+<div class="module-full-screen" style>
+<div class="module-inner" data-animate="fadeInUp" data-delay="200">
+<div class="page-width">
+<div class="module-full-screen-title">
+<h3>ABOUT US</h3>
+<div class="module-title-content"><i class="mark-left"></i>
+<h2>关于我们</h2>
+<i class="mark-right"></i></div>
+</div>
+<div id="a1portalSkin_ctr107105107105_mainArea" class="module-full-screen-content">
+<div class="qhd-content">
+<div style="text-align: center;">
+《易风学院》诞生于2014年6月（www.daxue518.com），以提供分享精品织梦源码及织梦建站过程常遇到的问题解决方案汇总为主要宗旨。<br/>
+《易风学院》内容涉及: 企业类织梦源码，门户类织梦源码，及工作室或博客类等基于织梦系统仿制等风格。<br/>
+《易风学院》将向着共享化、全面化、专业化、深度化、免费化的多元方向发展，打造实用快捷的建站体验，为会员及用户提供高质量的服务。<br/>
+《易风学院》感谢无数关注、支持我们的会员及各位访客们，感谢您们的信任。年轻的《易风学院》愿与同样充满活力的您，彼此相伴，共同成长！<br/>
+《易风学院》只专心做一件事，便是做好的完整的织梦源码！<br/>
+<br/>
+易风学院开站以来，尽管没有积累太多用户口碑和市场份额，但我们一直努力，每天保持更新各行各业好源码，让找织梦源码去daxue518已经成为很多织梦爱好者的习惯。<br/>
+相信通过我们的努力,daxue518会越来越好！<br/>
+&nbsp;</div>
+<div sty <p style="text-align: center;"> <a href="#" target="_blank"><img alt src="__IMG__/cb3edec8-bf8d-4ab7-a60b-6e1ebbba9b26.jpg" style="width: 577px; height: 148px;"/></a></p> </div>
+</div>
+</div>
+</div>
+</div>
+<a name="31835" id="31835"></a>
+<div class="module-full-screen module-full-screen-gray" style>
+<div class="module-inner" data-animate="fadeInDown" data-delay="200">
+<div class="page-width">
+<div class="module-full-screen-title">
+<h3>PHOTOGRAPHY WORKS</h3>
+<div class="module-title-content"><i class="mark-left"></i>
+<h2>摄影作品</h2>
+<i class="mark-right"></i></div>
+</div>
+<div id="a1portalSkin_ctr107106107106_mainArea" class="module-full-screen-content">
+<div class="tabs-default tabs-center">
+<ul class="tabs-nav clearfix">
+<li><a href="javascript:;" class="current"><span>服装摄影</span></a></li>
+<li><a href="javascript:;" class=""><span>产品摄影</span></a></li>
+<li><a href="javascript:;" class=""><span>皮具摄影</span></a></li>
+<li><a href="javascript:;" class=""><span>化妆品摄影</span></a></li>
+<li><a href="javascript:;" class=""><span>珠宝饰品</span></a></li>
+</ul>
+<div class="tabs-panes">
+<div class="tab-box clearfix" style="display:block;">
+<div id="a1portalSkin_ctr107106107106_TabList_QHDSPM107106M1527" class="tab-box-content"><a name="31836" id="31836"></a>
+<div class="module-default">
+<div class="module-inner">
+<div id="a1portalSkin_ctr107106107106_TabList_ctr107107107107_mainArea" class="module-content">
+<div class="portfolio-list">
+<ul class="column marg-per2 clearfix">
+<li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311434290-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">服装摄影7</a></h2>
+</div>
+</li>
+<li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311433020-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">服装摄影6</a></h2>
+</div>
+</li>
+<li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311414430-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">服装摄影5</a></h2>
+</div>
+</li>
+<li class="col-4-1 last" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311410590-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">服装摄影4</a></h2>
+</div>
+</li>
+<li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311409420-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">服装摄影3</a></h2>
+</div>
+</li>
+<li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311406200-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">服装摄影2</a></h2>
+</div>
+</li>
+<li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311402280-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">服装摄影1</a></h2>
+</div>
+</li>
+<li class="col-4-1 last" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311402280-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">服装摄影4</a></h2>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+ </div>
+<div class="tab-box clearfix" style>
+<div id="a1portalSkin_ctr107106107106_TabList_QHDSPM107106M1528" class="tab-box-content"><a name="31837" id="31837"></a>
+<div class="module-default">
+<div class="module-inner">
+<div id="a1portalSkin_ctr107106107106_TabList_ctr107108107108_mainArea" class="module-content">
+<div class="portfolio-list">
+<ul class="column marg-per2 clearfix">
+<li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311440190-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">鞋子</a></h2>
+</div>
+</li>
+<li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311439230-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">食品</a></h2>
+</div>
+</li>
+<li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-161031143S10-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">电子电器</a></h2>
+</div>
+</li>
+<li class="col-4-1 last" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-161031143G00-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">卫浴</a></h2>
+</div>
+</li>
+<li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311435580-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">餐具</a></h2>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tab-box clearfix" style>
+ <div id="a1portalSkin_ctr107106107106_TabList_QHDSPM107106M1529" class="tab-box-content"><a name="31838" id="31838"></a>
+<div class="module-default">
+<div class="module-inner">
+<div id="a1portalSkin_ctr107106107106_TabList_ctr107109107109_mainArea" class="module-content">
+<div class="portfolio-list">
+<ul class="column marg-per2 clearfix">
+<li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311443200-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">男包皮具</a></h2>
+</div>
+</li>
+<li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311442360-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">女包皮具</a></h2>
+</div>
+</li>
+<li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311441340-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">女生包包</a></h2>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tab-box clearfix" style>
+<div id="a1portalSkin_ctr107106107106_TabList_QHDSPM107106M1530" class="tab-box-content"><a name="31839" id="31839"></a>
+<div class="module-default">
+<div class="module-inner">
+<div id="a1portalSkin_ctr107106107106_TabList_ctr107110107110_mainArea" class="module-content">
+<div class="portfolio-list">
+<ul class="column marg-per2 clearfix">
+<li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311445370-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">化妆品1</a></h2>
+</div>
+</li>
+ <li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311444280-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">化妆品</a></h2>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tab-box clearfix" style>
+<div id="a1portalSkin_ctr107106107106_TabList_QHDSPM107106M1531" class="tab-box-content"><a name="31840" id="31840"></a>
+<div class="module-default">
+<div class="module-inner">
+<div id="a1portalSkin_ctr107106107106_TabList_ctr107111107111_mainArea" class="module-content">
+<div class="portfolio-list">
+<ul class="column marg-per2 clearfix">
+<li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311452300-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">项链</a></h2>
+</div>
+</li>
+<li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311451440-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">吊坠</a></h2>
+</div>
+</li>
+<li class="col-4-1" data-animate="fadeInUp">
+<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311450400-L.jpg" alt/></a></div>
+<div class="portfolio-title">
+<h2><a href="#" target="_blank">珠宝手链</a></h2>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a name="31841" id="31841"></a>
+<div class="module-full-screen" style>
+<div class="module-inner" data-animate="fadeInUp" data-delay="200">
+<div class="page-width">
+<div class="module-full-screen-title">
+<h3>FOUR ADVANTAGE</h3>
+<div class="module-title-content"><i class="mark-left"></i>
+<h2>4 大服务优势</h2>
+<i class="mark-right"></i></div>
+</div>
+<div id="a1portalSkin_ctr107112107112_mainArea" class="module-full-screen-content">
+<div class="qhd-content">
+<div class="column">
+<div class="col-4-1">
+<p style="text-align: center;"> <img alt src="__IMG__/1-1610311019340-L.jpg" style="width: 273px; height: 165px;"/></p>
+<p style="text-align: center;"> 10年聚焦，专业摄影</p>
+</div>
+<div class="col-4-1">
+<p style="text-align: center;"> <img alt src="__IMG__/1-1610311019160-L.jpg" style="width: 273px; height: 165px;"/></p>
+<p style="text-align: center;"> 一站式淘宝产品摄影，电商设计服务</p>
+</div>
+<div class="col-4-1">
+<p style="text-align: center;"> <img alt src="__IMG__/1-161031101U90-L.jpg" style="width: 273px; height: 165px;"/></p>
+<p style="text-align: center;"> 6000平方实景摄影棚</p>
+</div>
+<div class="col-4-1 last">
+<p style="text-align: center;"> <img alt src="__IMG__/1-161031101K50-L.jpg" style="width: 273px; height: 165px;"/></p>
+<p style="text-align: center;"> 30多名核心摄影团队</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a name="31842" id="31842"></a>
+<div class="module-full-screen" style>
+<div class="module-inner" data-animate="fadeInUp" data-delay="200">
+<div class="page-width">
+<div class="module-full-screen-title">
+<h3>SERVICE PROCESS</h3>
+<div class="module-title-content"><i class="mark-left"></i>
+<h2>服务流程</h2>
+<i class="mark-right"></i></div>
+</div>
+<div id="a1portalSkin_ctr107113107113_mainArea" class="module-full-screen-content">
+<div class="accordion"> <div class="accordion-handle">
+<h4>01. 联系客服</h4>
+<i></i></div>
+<div id="a1portalSkin_ctr107113107113_TabList_QHDSPM107113M1532" class="accordion-pane"><a name="31843" id="31843"></a>
+<div class="module-default">
+<div class="module-inner">
+<div id="a1portalSkin_ctr107113107113_TabList_ctr107114107114_mainArea" class="module-content">
+<div class="qhd-content"> <p>
+根据网页下方联系在线客服或拨打电话联系我们，说明您的拍摄需求。建议加我们的客服QQ，展示具体的图片拍摄方案等，再进行详细沟通，确认好拍摄方案。本地客户可以直接到我们的公司进行面对面的合作交涉。</p>
+<p>
+为了避免无谓及失误的信息传达沟通，而影响到工作进程，我们希望与项目的决策者直接沟通，充分、清晰、准确地了解其决策者的意图、想法与期望，并迅速得出结论，减少信息传递与臆测而造成的变异与工作延误。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="accordion-handle">
+<h4>02. 提供产品</h4>
+
+<i></i></div>
+<div id="a1portalSkin_ctr107113107113_TabList_QHDSPM107113M1532" class="accordion-pane"><a name="31843" id="31843"></a>
+<div class="module-default">
+<div class="module-inner">
+<div id="a1portalSkin_ctr107113107113_TabList_ctr107114107114_mainArea" class="module-content">
+<div class="qhd-content"> <p>
+明确拍摄内容、数量、费用及进度排期，根据您的实际情况，为您提供最适合的方案，签订合作协议，客户按照协议支付预付款。</p>
+<p>
+您可以直接带需要拍摄的货品到我们公司，异地客户以及其他不定因素不方便直接带货到我们公司，可以快递货品给我们，并告诉我们快递单号，方便我们查询快件。</p>
+<p>
+注：货品的来回快递费用需由客户承担。</p>
+<p>
+我们收到货品的同时，会有专门的工作人员清点数量，整理样品款式，贵重拍摄货品会有专门的保险柜保存。邮寄货品收到后我们会及时联系您并确认货品的数量与货品的完好。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="accordion-handle">
+<h4>03. 安排工作</h4>
+<i></i></div>
+<div id="a1portalSkin_ctr107113107113_TabList_QHDSPM107113M1532" class="accordion-pane"><a name="31843" id="31843"></a>
+<div class="module-default">
+<div class="module-inner">
+<div id="a1portalSkin_ctr107113107113_TabList_ctr107114107114_mainArea" class="module-content">
+<div class="qhd-content"> 收到货品我们会马上安排拍摄档期，按照既定的方案进行拍摄。拍摄完成后2～4个工作日内按照双方协议要求完成摄影作品的后期处理工作。 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="accordion-handle">
+<h4>04. 交付成品</h4>
+<i></i></div>
+<div id="a1portalSkin_ctr107113107113_TabList_QHDSPM107113M1532" class="accordion-pane"><a name="31843" id="31843"></a>
+<div class="module-default">
+<div class="module-inner">
+<div id="a1portalSkin_ctr107113107113_TabList_ctr107114107114_mainArea" class="module-content">
+<div class="qhd-content"> <p>
+摄影作品后期处理完成后，向客户提交样片进行审核，以确定我方制作的图片是否符合要求。再审核样片期间，客户可提供样片的修改意见，我方根据实际情况进行调整，尽可能地使图片符合客户要求。</p>
+<p>
+图片调整完成后，客户需在3个工作日内支付余款，我方收款后通过在线传输，如QQ、旺旺、邮箱、网盘等方式向客户提供成片。</p>
+<p>
+如果您需要底片，请提前与我们说明，我们会在邮寄货品回去的时候附上光盘资料。您也可以带您自己的U盘到我们的办公室拷贝。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a name="31847" id="31847"></a>
+<div class="module-full-screen" style>
+<div class="module-inner" data-animate="fadeInUp" data-delay="200">
+<div class="page-width">
+<div class="module-full-screen-title">
+ <h3>OUR PARTNERS</h3>
+<div class="module-title-content"><i class="mark-left"></i>
+<h2>合作伙伴</h2>
+<i class="mark-right"></i></div>
+</div>
+<div id="a1portalSkin_ctr107118107118_mainArea" class="module-full-screen-content">
+<div class="link-list">
+<ul class="column marg-per2 clearfix">
+<li class="col-5-1" data-animate="fadeInUp">
+<div class="link-img"><a href="#" target><img src="__IMG__/1-1610311035390-L.jpg" alt="茵曼"/></a></div>
+</li>
+<li class="col-5-1" data-animate="fadeInUp">
+<div class="link-img"><a href="#" target><img src="__IMG__/1-1610311035240-L.jpg" alt="绿瘦"/></a></div>
+</li>
+<li class="col-5-1" data-animate="fadeInUp">
+<div class="link-img"><a href="#" target><img src="__IMG__/1-1610311035090-L.jpg" alt="苏宁"/></a></div>
+</li>
+<li class="col-5-1" data-animate="fadeInUp">
+<div class="link-img"><a href="#" target><img src="__IMG__/1-1610311034410-L.jpg" alt="极星"/></a></div>
+</li>
+<li class="col-5-1 last" data-animate="fadeInUp">
+<div class="link-img"><a href="#" target><img src="__IMG__/1-1610311034270-L.jpg" alt="唯品会"/></a></div>
+</li>
+<li class="col-5-1" data-animate="fadeInUp">
+<div class="link-img"><a href="#" target><img src="__IMG__/1-1610311034110-L.jpg" alt="红蜻蜓"/></a></div>
+</li>
+<li class="col-5-1" data-animate="fadeInUp">
+<div class="link-img"><a href="#" target><img src="__IMG__/1-1610311033520-L.jpg" alt="万里马"/></a></div>
+</li>
+<li class="col-5-1" data-animate="fadeInUp">
+<div class="link-img"><a href="#" target><img src="__IMG__/1-1610311033120-L.jpg" alt="鳄鱼恤"/></a></div>
+</li>
+<li class="col-5-1" data-animate="fadeInUp">
+<div class="link-img"><a href="#" target><img src="__IMG__/1-1610311032550-L.jpg" alt="江博士"/></a></div>
+</li>
+<li class="col-5-1 last" data-animate="fadeInUp">
+<div class="link-img"><a href="#" target><img src="__IMG__/1-1610311032400-L.jpg" alt="五粮液"/></a></div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+{include file='public/footer'/}
+</body>
+</html>

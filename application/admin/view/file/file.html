@@ -130,8 +130,13 @@
 		//console.log(file+'--'+filepath);
 		layer.prompt({title: '请输入新的文件名',value:file}, function(value, index){
   			
-			$.get("{:url('reName','',false)}",{'file':value,'filepath':filepath},function(){
-
+			$.get("{:url('reName','',false)}",{'file':value,'filepath':filepath},function(res){
+				layer.msg(res.msg);
+				if(res.code == '1'){
+					setTimeout(function(){
+						window.location=window.location;
+					},1500)
+				}
 			},'json');
   			layer.close(index);
   			

@@ -194,14 +194,19 @@ class File extends Controller
     {
         $file = $request->get('file');
         $filepath = $request->get('filepath');
-        dump($filepath);
-        die();
+        //将编码后的url字符串解码
+        $filepath = urldecode($filepath);
         //新的文件名
         $newfile = dirname($filepath).DS.$file;  
 
-        dump($newfile);
+        //对文件进行重命名
+        if(file_exists($newfile)){
+            return json(['code'=>'0','msg'=>'文件名已存在！']);
+        }
 
-        //return $file.'----'.$filepath;
+        rename($filepath,$newfile);
+
+        return json(['code'=>'1','msg'=>'操作成功！']);
     }
 
     /**

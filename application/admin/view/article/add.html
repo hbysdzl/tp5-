@@ -75,7 +75,7 @@
   		<div class="layui-form-item">
 			<label class="layui-form-label">作者</label>
 			<div class="layui-input-block">
-				<input type="text" name="author" value="{$config.author}" class="layui-input linksUrl" lay-verify="required" placeholder="作者" style="width: 200px;">
+				<input type="text" name="author" value="{$config.author? $config.author:''}" class="layui-input linksUrl" lay-verify="required" placeholder="作者" style="width: 200px;">
 			</div>
 		</div>
 		<div class="layui-form-item">
