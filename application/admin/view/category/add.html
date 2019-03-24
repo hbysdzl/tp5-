@@ -65,6 +65,11 @@
 						<input type="text" name="sort" class="layui-input linksUrl" lay-verify="required" placeholder="排序">
 					</div>
 				</div>
+				<div class="layui-form-item">
+				<div class="layui-input-block">
+				<button class="layui-btn" lay-submit="" lay-filter="addData">立即提交</button>
+				</div>
+		    	</div>
 			 </div>
 			<div class="layui-tab-item layui-anim layui-anim-up">
 				<div class="layui-form-item">
@@ -95,21 +100,27 @@
 						<textarea placeholder="摘要" name="remark" class="layui-textarea linksDesc"></textarea>
 					</div>
 				</div>
+				<div class="layui-form-item">
+				<div class="layui-input-block">
+				<button class="layui-btn" lay-submit="" lay-filter="addData">立即提交</button>
+				</div>
+		    </div>
 		    </div>
 		   <div class="layui-tab-item layui-anim layui-anim-up">
 				<div class="layui-form-item">
+					<div class="layui-input-block">
 					<label class="layui-form-label">内容</label>
-						<textarea placeholder="内容" name="comment" id="remark"></textarea>
+					<textarea placeholder="内容" name="comment" id="remark"></textarea>
 					</div>
 				</div>
-		   </div>
-		</div>
-		</div>
-		<div class="layui-form-item">
-			<div class="layui-input-block">
+				<div class="layui-form-item">
+				<div class="layui-input-block">
 				<button class="layui-btn" lay-submit="" lay-filter="addData">立即提交</button>
-				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
-		    </div>
+				</div>
+		    </div>	
+			</div>
+
+		   </div>
 		</div>
 	</form>
 	
