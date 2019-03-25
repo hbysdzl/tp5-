@@ -23,13 +23,13 @@ class Page extends Common
     }
 
     /**
-     * 显示创建资源表单页.
+     * 专业团队
      *
      * @return \think\Response
      */
-    public function create()
+    public function team()
     {
-        //
+        return $this->fetch();
     }
 
     /**
