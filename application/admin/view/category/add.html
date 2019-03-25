@@ -24,7 +24,7 @@
     </style>
 </head>
 <body class="childrenBody">
-	<form class="layui-form" style="width:60%;">
+	<form class="layui-form" style="width:70%;">
 		<div class="layui-tab">
 			<ul class="layui-tab-title">
 	    		<li class="layui-this">基本信息</li>
@@ -208,7 +208,9 @@
     }
 
     //实例化编辑器
-    var ue = UE.getEditor('remark');
+    var ue = UE.getEditor('remark',{
+    	initialFrameWidth:null
+    });
 	</script>
 </body>
 </html>

@@ -68,32 +68,18 @@ html {
 <div class="top-main-content clearfix">
 <nav class="nav">
 <div class="main-nav clearfix" skinobjectzone="menu_468">
-<ul class="sf-menu">
-<li class="current"><a class="first-level" href="#" target><strong>首页</strong></a><i></i></li>
-<li class><a class="first-level" href="#" target><strong>关于我们</strong></a><i></i>
-<ul class>
-<li class><a class href="#" target><strong>公司简介</strong></a></li><li class><a class href="#" target><strong>专业团队</strong></a></li><li class><a class href="#" target><strong>人才招聘</strong></a></li>
-</ul>
-</li><li class><a class="first-level" href="#" target><strong>摄影作品</strong></a><i></i>
-<ul class>
-<li class><a class href="#" target><strong>服装摄影</strong></a></li><li class><a class href="#" target><strong>产品摄影</strong></a></li><li class><a class href="#" target><strong>皮具摄影</strong></a></li><li class><a class href="#" target><strong>化妆品摄影</strong></a></li><li class><a class href="#" target><strong>珠宝饰品</strong></a></li>
-</ul>
-</li><li class><a class="first-level" href="#" target><strong>模特资料</strong></a><i></i>
-<ul class>
-<li class><a class href="#" target><strong>国内女模特</strong></a></li><li class><a class href="#" target><strong>国内男模特</strong></a></li><li class><a class href="#" target><strong>国外女模特</strong></a></li><li class><a class href="#" target><strong>国外男模特</strong></a></li>
-</ul>
-</li><li class><a class="first-level" href="#" target><strong>摄影场景</strong></a><i></i>
-<ul class>
-</ul>
-</li><li class><a class="first-level" href="#" target><strong>新闻资讯</strong></a><i></i>
-<ul class>
-<li class><a class href="#" target><strong>公司新闻</strong></a></li><li class><a class href="#" target><strong>摄影学堂</strong></a></li>
-</ul>
-</li><li class><a class="first-level" href="#" target><strong>联系我们</strong></a><i></i>
-<ul class>
-</ul>
-</li>
-</ul>
+	<ul class="sf-menu">
+		<li class="current"><a class="first-level" href="#" target><strong>首页</strong></a><i></i></li>
+		{volist name='cate' id='vo'}
+		<li class><a class="first-level" href="#" target><strong>{$vo.name}</strong></a><i></i>
+			<ul class>
+				{volist name='$vo.child' id = 'v'}
+				<li class><a class href="#" target><strong>{$v.name}</strong></a></li>
+				{/volist}
+			</ul>
+		</li>
+		{/volist}
+	</ul>
 </div>
 </nav>
 </div>
