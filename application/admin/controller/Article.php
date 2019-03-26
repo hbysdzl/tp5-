@@ -73,9 +73,8 @@ class Article extends Common
 
             //取出栏目数据
             $cateModel = model('Category');
-            $data = $cateModel->field('id,name,pid')->select();
+            $data = $cateModel->field('id,name,pid,type')->select();
             $cateData = $cateModel->getcates($data);
-            //dump($cateData);
             $this->assign('cateData',$cateData);
             return $this->fetch();
         }
@@ -108,7 +107,7 @@ class Article extends Common
             config('title','内容编辑');
             //获取栏目数据
             $cateModel = model('Category');
-            $datas = $cateModel->field('id,name,pid')->select();
+            $datas = $cateModel->field('id,name,pid,type')->select();
             $cateData = $cateModel->getcates($datas);
             $this->assign('cateData',$cateData);
 

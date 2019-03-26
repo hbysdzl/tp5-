@@ -1,62 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>{:config('title')}</title>
-    <link rel="stylesheet" href="__ADMIN__/layui/css/layui.css">
-    <link rel="stylesheet" href="__ADMIN__/css/login.css">
+<meta charset="utf-8">
+<title>{:config('title')}</title>
+
+<!-- Behavioral Meta Data -->
+<meta name="Christmas-Landing-Page" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<!-- Styles -->
+<link rel="stylesheet" type="text/css" href="http://www.5imoban.net/download/css/bootstrap3.3.4.min.css">
+<link rel="stylesheet" type="text/css" href="__ADMIN__/vendor/login/css/style.css">
+<link rel="stylesheet" type="text/css" href="__ADMIN__/vendor/login/css/media-query.css">
+
 </head>
 <body>
-<div class="layui-anim layui-anim-up login-main" id="form-main">
-    <form class="layui-form" action="http://www.baidu.com" method="post">
-        <h3><span>某某公司</span>网站管理系统</h3>
-        <div class="ly-input">
-            <input type="text" name="username" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
-        </div>
-        <div class="ly-input">
-            <input type="password" name="password" required  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
-        </div>
-        <div class="ly-input">
-            <input type="text" name="code" required  lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input" style="width: 110px;float: left;" >
-            <img src="{:captcha_src()}" onclick="this.src='{:captcha_src()}?'+Math.random()" style="cursor: pointer;">
-        </div>
-        <div class="ly-input">
-            <button class="layui-btn layui-btn-danger ly-submit" id="ly-submit" lay-submit lay-filter="formDemo">登录</button>
-        </div>
-    </form>
-    <p>版权所有：段宗来</p>
+
+
+
+<div id="loader"></div>
+<!-- Parallax Container -->
+<div id="container" class="parallax-container snow">
+	<ul id="christmas_scene" class="christmas-scene" >
+		<li class="layer" data-depth="0.80"><div class="layer-5 layer-photo photo-zoom"></div></li>
+		<li class="layer" data-depth="0.60"><div class="layer-4 layer-photo photo-zoom"></div></li>
+		<li class="layer" data-depth="0.40"><div class="layer-3 layer-photo photo-zoom"></div></li>
+		<li class="layer" data-depth="0.20"><div class="layer-2 layer-photo photo-zoom"></div></li>
+		<li class="layer" data-depth="0.00"><div class="layer-1 layer-photo"></div></li>
+	</ul>
+	<!-- Countdown Container -->
+	<div id="countdown_container">
+		<div class="col-md-3 col-xs-3 countdown-globe">{$time[0]}<div class="col-md-12 padding-none">Days</div></div>
+		<div class="col-md-3 col-xs-3 countdown-globe">{$time[1]}<div class="col-md-12 padding-none">Hours</div></div>
+		<div class="col-md-3 col-xs-3 countdown-globe">{$time[2]}<div class="col-md-12 padding-none">Minutes</div></div>
+		<div class="col-md-3 col-xs-3 countdown-globe">{$time[3]}<div class="col-md-12 padding-none">Seconds</div></div>
+	</div>
+
+	<!-- Merry Christmas Text -> You can replace with anything you like! -->
+	<div class="merry-christmas-text">碧胜家居</div>
+
+	<!-- Contact Pole Image -> From here the E-mail modal is triggered -->
+	<div id="mail_pole">
+		<img src="__ADMIN__/vendor/login/images/pole.png" class="img-responsive" alt="mail-pole" data-toggle="modal" data-target="#contact_modal">
+	</div>
+	<!-- Christmas Tree -->
+	<img src="__ADMIN__/vendor/login/images/christmas-tree.png" alt="christmas-tree" id="christmas_tree">
 </div>
 
-<script src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
-<script src="__ADMIN__/layui/layui.js"></script>
-<script src="__ADMIN__/js/login.js"></script>
-<script src="__ADMIN__/js/jquery.form.js"></script>
-<script>
-    //一般直接写在一个js文件中
-    layui.use(['layer', 'form'], function(){
-        var layer = layui.layer
-            ,form = layui.form;
-        form.on('submit(formDemo)', function(data){
-            $('#ly-submit').submit();
-        });
-    });
-    
-    $('form').submit(function(){
-        $(this).ajaxSubmit({
-            type:"post",
-            url:"{:url('login')}",
-            dataType:"json",
-            success:function(data){
-                if (data.code == '1') {
-                    window.location.href = "{:url('Index/index')}";
-                }else{
-                    layer.alert(data.msg);
-                }
-            }
-        });
+<!-- Send E-mail Modal -->
+<div class="modal fade" id="contact_modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="col-md-12 mail-container">
+					<div class="col-md-12 padding-none bg-color">
+						<div class="col-md-12 text-center">中山碧胜家居用品有限公司</div>
+						<div class="col-md-12 text-center">Zhongshan bisheng household products co. LTD</div>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<form class="col-md-12 padding-none">
+							<div class="col-md-6 col-xs-12">
+								<div class="col-md-12 padding-none">
+									<input name="username" type="text" autocomplete="off" class="mail-first-name" id="username" placeholder="用户名" />
+								</div>
+								<div class="col-md-12 padding-none">
+									<input type="password" name="password" class="mail-email" id="password" placeholder="密码" />
+								</div>
+								<div class="col-md-12 padding-none">
+									<input type="text" name="code" autocomplete="off" class="mail-email" id="code" placeholder="验证码" />
+								</div>
+								<div>
+									<img src="{:captcha_src()}" onclick="this.src='{:captcha_src()}?'+Math.random()" style="cursor: pointer;width: 175px;">
+								</div>
+							</div>
 
-        return false;
-    });
+							<div class="col-md-6 col-xs-12 text-right">
+								<img src="__ADMIN__/vendor/login/images/form-image.png" alt="form-pattern-image">
+								<button class="btn form-submit-button" type="button" id="submit_form_btn">登录</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-md-12 padding-none mail-container hidden">
+					<div class="col-md-12 padding-none bg-color thank-you-msg text-large" id="form_success_msg"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Scripts -->
+<script src="http://www.5imoban.net/download/jquery/jquery-3.1.1.min.js"></script> 
+<script src="http://www.5imoban.net/download/js/bootstrap3.3.4.min.js"></script>
+<script src="__ADMIN__/vendor/login/js/jquery.countdown.js"></script> 
+<script src="__ADMIN__/vendor/login/js/jquery.parallax.js"></script>
+<script src="__ADMIN__/vendor/login/js/snow.js"></script>
+<script src="__ADMIN__/vendor/login/js/main.js"></script>
+<script>
+	// Parallax Init
+	$('#christmas_scene').parallax({
+		scalarX: 5,
+		scalarY: 15,
+		invertY: false
+	});
 </script>
 </body>
 </html>

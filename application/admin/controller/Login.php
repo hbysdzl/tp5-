@@ -51,6 +51,13 @@ class Login extends Controller
                 $this->redirect('Index/index');
             }
             config('title','欢迎登录我公司管理系统');
+
+            //获取当前时间
+            $time = date('d/H/i/s',time());
+            $time = explode('/',$time);
+           
+            $this->assign('time',$time);
+
             return $this->fetch();
         }
         

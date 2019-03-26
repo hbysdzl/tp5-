@@ -14,7 +14,15 @@ class Category extends Model
     //栏目类型获取器
     public function getTypeAttr($value) {
 
-        $type = ['1'=>'列表','2'=>'图片','3'=>'单页'];
+        $type = [
+            '1' =>  '单页',
+            '2' =>  '摄影作品',
+            '3' =>  '模特资料',
+            '4' =>  '摄影场景',
+            '5' =>  '新闻资讯',
+            '6' =>  '专业团队',
+            '7' =>  '联系我们',
+        ];
         return $type[$value];
     }
 

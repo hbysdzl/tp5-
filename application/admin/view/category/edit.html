@@ -53,12 +53,50 @@
 					</div>
 				</div>
 				
-				<div class="layui-form-item">
+		  		<div class="layui-form-item">
 				    <label class="layui-form-label">栏目类型</label>
 				    <div class="layui-input-block">
-				      <input type="radio" name="type" value="1" title="列表" {$editData->getData('type') == '1'?'checked':''}><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon layui-anim-scaleSpring"></i><div>列表</div></div>
-				      <input type="radio" name="type" value="2" title="图片" {$editData->getData('type') == '2'?'checked':''}><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>图片</div></div>
-				      <input type="radio" name="type" value="3" title="单页" {$editData->getData('type') == '3'?'checked':''}><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>单页</div></div>
+				       <input type="radio" name="type" value="1" title="单页" {$editData->getData('type') == '1'?'checked':''}>
+				       <div class="layui-unselect layui-form-radio">
+					      	<i class="layui-anim layui-icon"></i>
+					      	<div>单页</div>
+				       </div>
+
+				       <input type="radio" name="type" value="2" title="摄影作品" {$editData->getData('type') == '2'?'checked':''}>
+				       <div class="layui-unselect layui-form-radio">
+					      	<i class="layui-anim layui-icon"></i>
+					      	<div>摄影作品</div>
+				       </div>
+
+				       <input type="radio" name="type" value="3" title="模特资料" {$editData->getData('type') == '3'?'checked':''}>
+				       <div class="layui-unselect layui-form-radio">
+					      	<i class="layui-anim layui-icon"></i>
+					      	<div>模特资料</div>
+				       </div>
+
+				       <input type="radio" name="type" value="4" title="摄影场景" {$editData->getData('type') == '4'?'checked':''}>
+				       <div class="layui-unselect layui-form-radio">
+					      	<i class="layui-anim layui-icon"></i>
+					      	<div>摄影场景</div>
+				       </div>
+
+				       <input type="radio" name="type" value="5" title="新闻资讯" {$editData->getData('type') == '5'?'checked':''}>
+				       <div class="layui-unselect layui-form-radio">
+					      	<i class="layui-anim layui-icon"></i>
+					      	<div>新闻资讯</div>
+				       </div>
+
+				       <input type="radio" name="type" value="6" title="专业团队" {$editData->getData('type') == '6'?'checked':''}>
+				       <div class="layui-unselect layui-form-radio">
+					      	<i class="layui-anim layui-icon"></i>
+					      	<div>专业团队</div>
+				       </div>
+
+				       <input type="radio" name="type" value="7" title="联系我们" {$editData->getData('type') == '7'?'checked':''}>
+				       <div class="layui-unselect layui-form-radio">
+					      	<i class="layui-anim layui-icon"></i>
+					      	<div>联系我们</div>
+				       </div>
 				    </div>
 		  		</div>
 		  		<div class="layui-form-item">

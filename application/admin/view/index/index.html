@@ -20,7 +20,7 @@
 		<!-- 顶部 -->
 		<div class="layui-header header">
 			<div class="layui-main">
-				<a href="#" class="logo">某某莫某公司网站后台管理系统</a>
+				<a href="#" class="logo">碧胜家居logo</a>
 				<!-- 搜索 -->
 				<div class="layui-form component">
 			        <select name="modules" lay-verify="required" lay-search="">
@@ -30,29 +30,6 @@
 						<option value="3">layim</option>
 			        </select>
 			        <i class="layui-icon">&#xe615;</i>
-			    </div>
-				<!-- 天气信息 -->
-			    <div class="weather" pc>
-			    	<div id="tp-weather-widget"></div>
-					<script>
-						// (function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))			
-						
-						// tpwidget("init", {
-						//     "flavor": "slim",
-						//     "location": "WX4FBXXFKE4F",
-						//     "geolocation": "disabled",
-						//     "language": "zh-chs",
-						//     "unit": "c",
-						//     "theme": "chameleon",
-						//     "container": "tp-weather-widget",
-						//     "bubble": "disabled",
-						//     "alarmType": "badge",
-						//     "color": "#FFFFFF",
-						//     "uid": "U9EC08A15F",
-						//     "hash": "14dff75e7253d3a8b9727522759f3455"
-						// });
-						// tpwidget("show");
-					</script>
 			    </div>
 			    <!-- 顶部右侧菜单 -->
 			    <ul class="layui-nav top_menu">
@@ -86,7 +63,7 @@
 		<div class="layui-side layui-bg-black">
 			<div class="user-photo">
 				<a class="img" title="我的头像" ><img src="{$Think.session.adminFace}"></a>
-				<p>你好！<span class="userName">{$Think.session.adminName}在线</span>, 欢迎登录</p>
+				<p>你好！<span class="userName">{$Think.session.adminName} 在线</span></p>
 			</div>
 			<div class="navBar layui-side-scroll"></div>
 		</div>

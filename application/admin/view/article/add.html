@@ -30,10 +30,10 @@
 	 <div class="layui-form-item">
     	<label class="layui-form-label">所属栏目</label>
 		    <div class="layui-input-block">
-		      <select name="cid" lay-verify="required">
+		      <select name="cid" lay-verify="required" lay-filter='cates'>
 		        <option value="">--请选择--</option>
 		        {volist name='cateData' id='vo'}
-		        <option value="{$vo.id}">{$vo.name}</option>
+		        <option value="{$vo.id}" type={$vo->getData('type')}>{$vo.name}</option>
 		        {/volist}
 		      </select>
 		    </div>
@@ -71,6 +71,28 @@
 		    <div class="layui-input-block">
 		      <textarea name="remark" placeholder="请填写摘要" class="layui-textarea"></textarea>
 		    </div>
+  		</div>
+  		<div id='team' style="display: none;">
+  			<div class="layui-form-item">
+			<label class="layui-form-label">职务</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="zhiwu" placeholder="请填写职务">
+			</div>
+			</div>
+			<div class="layui-form-item">
+			<label class="layui-form-label">职称</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="team" placeholder="请填写职称">
+			</div>
+			</div>
+  		</div>
+  		<div id='model' style="display: none;">
+  			<div class="layui-form-item">
+				<label class="layui-form-label">模特资料</label>
+				<div class="layui-input-block">
+					<input type="text" class="layui-input" name="model" placeholder="请填模特资料">
+				</div>
+			</div>
   		</div>
   		<div class="layui-form-item">
 			<label class="layui-form-label">作者</label>
@@ -139,7 +161,29 @@
 						layer.alert(res.msg);
 					}
 				}
-			});	        
+			});
+
+			//监听select
+			form.on('select(cates)', function(data){
+				  var type = $(data.elem).find('option:selected').attr('type');
+				  //alert(type);
+				  switch(type){
+				  		case '6':
+				  		$('#team').fadeIn();
+				  		$('#model').fadeOut();
+				  		break;
+
+				  		case '3':
+				  		$('#model').fadeIn();
+				  		$('#team').fadeOut;
+				  		break;
+				  		
+				  		default:
+				  		$('#model').hide();
+				  		$('#team').hide();
+				  }
+			});      
+
 	        //提交数据
 	        addformData(form,"{:url('add')}");
         });
