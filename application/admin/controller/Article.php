@@ -113,9 +113,9 @@ class Article extends Common
 
             //取出数据
             $id = $request->param('id');
-            $editData = articleModel::find($id);
-
-            //取出图片数据
+            $editData = articleModel::alias('t1')->field('t1.*,t2.type')->join('category t2','t1.cid=t2.id')->find($id);
+            
+            //取出图片数据    
             $res = db('pics')->field('pic')->where('aid',$id)->select();
             $editData['pics'] = $res;
             //dump($editData);

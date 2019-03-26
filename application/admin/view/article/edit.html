@@ -77,7 +77,7 @@
 		      <textarea name="remark" placeholder="请填写摘要" class="layui-textarea">{$editData.remark}</textarea>
 		    </div>
   		</div>
-  		<div id='model' style="display: none;">
+  		<div id='model' {neq name="$editData.type" value='3'}style="display: none;"{/neq}>
   			<div class="layui-form-item">
 				<label class="layui-form-label">模特资料</label>
 				<div class="layui-input-block">
@@ -85,7 +85,7 @@
 				</div>
 			</div>
   		</div>
-  		<div id='team' style="display: none;">
+  		<div id='team' {neq name="$editData.type" value='6'}style="display: none;"{/neq}>
   			<div class="layui-form-item">
 			<label class="layui-form-label">职务</label>
 			<div class="layui-input-block">
