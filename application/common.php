@@ -23,3 +23,51 @@ function fileFont($size=0,$num=0){
 
 	return round($size,$num).$unit[$i];
 }
+
+
+//生成栏目链接地址
+
+function makeurl($type=1,$id){
+	$url = '';
+	switch($type){
+		case '1':
+		$url = url('index/Page/index',['id'=>$id]);
+		break;
+
+		case '2':
+		$url = url('index/Works/index',['id'=>$id]);
+		break;
+
+		case '3':
+		$url = url('index/Model/index',['id'=>$id]);
+		break;
+
+		case '4':
+		$url = url('index/Scene/index',['id'=>$id]);
+		break;
+
+		case '5':
+		$url = url('index/News/index',['id'=>$id]);
+		break;
+
+		case '6':
+		$url = url('index/Page/team',['id'=>$id]);
+		break;
+
+		case '7':
+		$url = url('index/Contactus/index',['id'=>$id]);
+		break;
+
+		default:
+		$url = url('index/Index/index');
+
+	}
+
+	//判断当前栏目下是否有二级栏目
+	$res = db('category')->where('pid',$id)->select();
+	if($res){
+		$url = 'javascript:void(0)';
+	}
+
+	return $url;
+}

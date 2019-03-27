@@ -2,7 +2,7 @@
 <head id="Head">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <meta name="author" content="order by bbs.daxue518.com"/>
-<title>双语-视觉摄影</title>
+<title>{$config.title}</title>
 <meta name="description" content/>
 <meta name="keywords" content/>
 <meta http-equiv="page-enter" content="RevealTrans(Duration=0,Transition=1)"/>
@@ -63,22 +63,22 @@ html {
 <header class="top header-v1 desktops-section default-top">
 <div class="top-main">
 <div class="page-width clearfix">
-<div class="logo" skinobjectzone="HtmlLogo_399"><a href="#"><img src="__IMG__/logo.png" alt="视觉摄影"/></a></div>
+<div class="logo" skinobjectzone="HtmlLogo_399"><a href="#"><img src="/static/{$config.logo}" alt="视觉摄影" width="100" /></a></div>
 
 <div class="top-main-content clearfix">
 <nav class="nav">
 <div class="main-nav clearfix" skinobjectzone="menu_468">
 	<ul class="sf-menu">
-		<li class="current"><a class="first-level" href="#" target><strong>首页</strong></a><i></i></li>
-		{volist name='cate' id='vo'}
-		<li class><a class="first-level" href="#" target><strong>{$vo.name}</strong></a><i></i>
-			<ul class>
-				{volist name='$vo.child' id = 'v'}
-				<li class><a class href="#" target><strong>{$v.name}</strong></a></li>
-				{/volist}
-			</ul>
-		</li>
-		{/volist}
+		<li {eq name='0' value="$currtype" }class="current"{/eq}><a class="first-level" href="{:url('Index/index')}" target><strong>首页</strong></a><i></i></li>
+			{volist name='cate' id='vo'}
+				<li {eq name="$vo['type']" value="$currtype"}class="current"{/eq}><a class="first-level" href="{$vo.type|makeurl=###,$vo['id']}" target><strong>{$vo.name}</strong></a><i></i>
+					<ul class>
+						{volist name='$vo.child' id = 'v'}
+						<li class><a class href="{$v.type|makeurl=###,$v['id']}" target><strong>{$v.name}</strong></a></li>
+						{/volist}
+					</ul>
+				</li>
+			{/volist}
 	</ul>
 </div>
 </nav>

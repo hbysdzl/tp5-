@@ -130,17 +130,13 @@
 <div id="a1portalSkin_ctr107104107104_mainArea" class="module-content">
 <div class="slideshow carousel clearfix" style="height:700px; overflow:hidden;">
 <div id="carousel-107104">
- <div class="carousel-item">
-<div class="carousel-img"><a href="javascript:;" target><img src="__IMG__/1-1610301K5510-L.jpg" height="700" alt="幻灯3"/></a></div>
+  {volist name='banner' id='vo'}
+  <div class="carousel-item">
+    <div class="carousel-img"><a href="{$vo.url}" target><img src="{$vo.pic}" height="700" alt="幻灯1"/></a></div>
+  </div>
+  {/volist}
 </div>
-<div class="carousel-item">
-<div class="carousel-img"><a href="javascript:;" target><img src="__IMG__/1-1610301K5360-L.jpg" height="700" alt="幻灯2"/></a></div>
-</div>
-<div class="carousel-item">
-<div class="carousel-img"><a href="javascript:;" target><img src="__IMG__/1-1610301K5230-L.jpg" height="700" alt="幻灯1"/></a></div>
-</div>
-</div>
-<div class="carousel-btn carousel-btn-fixed" id="carousel-page-107104"></div>
+  <div class="carousel-btn carousel-btn-fixed" id="carousel-page-107104"></div>
 </div>
 <script type="text/javascript">
 
@@ -190,16 +186,9 @@
 <div id="a1portalSkin_ctr107105107105_mainArea" class="module-full-screen-content">
 <div class="qhd-content">
 <div style="text-align: center;">
-《易风学院》诞生于2014年6月（www.daxue518.com），以提供分享精品织梦源码及织梦建站过程常遇到的问题解决方案汇总为主要宗旨。<br/>
-《易风学院》内容涉及: 企业类织梦源码，门户类织梦源码，及工作室或博客类等基于织梦系统仿制等风格。<br/>
-《易风学院》将向着共享化、全面化、专业化、深度化、免费化的多元方向发展，打造实用快捷的建站体验，为会员及用户提供高质量的服务。<br/>
-《易风学院》感谢无数关注、支持我们的会员及各位访客们，感谢您们的信任。年轻的《易风学院》愿与同样充满活力的您，彼此相伴，共同成长！<br/>
-《易风学院》只专心做一件事，便是做好的完整的织梦源码！<br/>
-<br/>
-易风学院开站以来，尽管没有积累太多用户口碑和市场份额，但我们一直努力，每天保持更新各行各业好源码，让找织梦源码去daxue518已经成为很多织梦爱好者的习惯。<br/>
-相信通过我们的努力,daxue518会越来越好！<br/>
-&nbsp;</div>
-<div sty <p style="text-align: center;"> <a href="#" target="_blank"><img alt src="__IMG__/cb3edec8-bf8d-4ab7-a60b-6e1ebbba9b26.jpg" style="width: 577px; height: 148px;"/></a></p> </div>
+  {$about.comment}
+</div>
+<div sty <p style="text-align: center;"> <a href="#" target="_blank"><img alt src="{$about.pic}" style="width: 577px; height: 148px;"/></a></p> </div>
 </div>
 </div>
 </div>
