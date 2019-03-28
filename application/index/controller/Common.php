@@ -45,14 +45,14 @@ class Common extends Controller
 			'cate'		=>	$catedata,
 			'currtype'	=>	$currtype,
 			'config'	=>	$config
-			]);
+        ]);
 		
 	}
 
 	//获取顶级栏目类型
 	protected function getCurr($controller) {
 		switch ($controller) {
-			case 'Index':
+            case 'Index':
 				return '0';
 				break;
 			
@@ -76,7 +76,7 @@ class Common extends Controller
 				return '5';
 				break;
 
-			case 'Contactus':
+            case 'Contactus':
 				return '6';
 				break;
 			default:
