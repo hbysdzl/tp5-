@@ -21,10 +21,10 @@ class Common extends Controller
 	public function _initialize() {
 
 		//获取栏目数据
-		$catedata = db('category')->field('id,name,pid,type')->where('pid','0')->order('sort desc,id asc')->select();
+		$catedata = db('category')->field('id,name,pid,type')->where('pid','0')->where('isshow','1')->order('sort desc,id asc')->select();
 
 		foreach ($catedata as $k => &$v) {
-			$cate2 = db('category')->field('id,name,pid,type')->where('pid',$v['id'])->order('sort desc,id asc')->select();
+			$cate2 = db('category')->field('id,name,pid,type')->where('pid',$v['id'])->where('isshow','1')->order('sort desc,id asc')->select();
 			$v['child'] = $cate2;
 		}
 

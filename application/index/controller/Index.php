@@ -15,13 +15,14 @@ class Index extends Common
     {	
     	$banner = $this->getBanner();
     	$about = $this->getAbout();
-      $work = $this->getWorks();
+        $work = $this->getWorks();
 
-      dump($work);
+        $huoban = $this->getHuoban();
     	$this->assign([
     		'banner'	=>	$banner,
     		'about'		=>	$about,
-            'works'     =>  $work
+            'works'     =>  $work,
+            'huoban'    =>  $huoban
     	]);
 
         return $this->fetch();
@@ -64,6 +65,22 @@ class Index extends Common
             ->select();
             $v['article'] = $article;
         }
+        return $res;
+    }
+
+    //合作伙伴
+    private function getHuoban() {
+        // 查出该栏目
+        $lan = db('category')->field('id')->where('mark','huoban')->find();
+
+        //查出对应内容
+        $res = db('article')->alias('t1')->join('pics t2','t1.id=t2.aid','left')
+            ->field('t1.id,t1.title,t2.pic')
+            ->where('t1.cid',$lan['id'])->where('t1.istop','1')
+            ->order('toptime desc,addtime desc')
+            ->select();
+
+
         return $res;
     }
 

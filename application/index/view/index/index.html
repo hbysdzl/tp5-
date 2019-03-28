@@ -401,46 +401,11 @@
                 <div id="a1portalSkin_ctr107118107118_mainArea" class="module-full-screen-content">
                     <div class="link-list">
                         <ul class="column marg-per2 clearfix">
-                            <li class="col-5-1" data-animate="fadeInUp">
-                                <div class="link-img"><a href="#" target><img src="__IMG__/1-1610311035390-L.jpg"
-                                                                              alt="茵曼"/></a></div>
-                            </li>
-                            <li class="col-5-1" data-animate="fadeInUp">
-                                <div class="link-img"><a href="#" target><img src="__IMG__/1-1610311035240-L.jpg"
-                                                                              alt="绿瘦"/></a></div>
-                            </li>
-                            <li class="col-5-1" data-animate="fadeInUp">
-                                <div class="link-img"><a href="#" target><img src="__IMG__/1-1610311035090-L.jpg"
-                                                                              alt="苏宁"/></a></div>
-                            </li>
-                            <li class="col-5-1" data-animate="fadeInUp">
-                                <div class="link-img"><a href="#" target><img src="__IMG__/1-1610311034410-L.jpg"
-                                                                              alt="极星"/></a></div>
-                            </li>
+                            {volist name='huoban' id='vo'}
                             <li class="col-5-1 last" data-animate="fadeInUp">
-                                <div class="link-img"><a href="#" target><img src="__IMG__/1-1610311034270-L.jpg"
-                                                                              alt="唯品会"/></a></div>
+                                <div class="link-img"><a href="#" target><img src="{$vo.pic}" alt="{$vo.title}"/></a></div>
                             </li>
-                            <li class="col-5-1" data-animate="fadeInUp">
-                                <div class="link-img"><a href="#" target><img src="__IMG__/1-1610311034110-L.jpg"
-                                                                              alt="红蜻蜓"/></a></div>
-                            </li>
-                            <li class="col-5-1" data-animate="fadeInUp">
-                                <div class="link-img"><a href="#" target><img src="__IMG__/1-1610311033520-L.jpg"
-                                                                              alt="万里马"/></a></div>
-                            </li>
-                            <li class="col-5-1" data-animate="fadeInUp">
-                                <div class="link-img"><a href="#" target><img src="__IMG__/1-1610311033120-L.jpg"
-                                                                              alt="鳄鱼恤"/></a></div>
-                            </li>
-                            <li class="col-5-1" data-animate="fadeInUp">
-                                <div class="link-img"><a href="#" target><img src="__IMG__/1-1610311032550-L.jpg"
-                                                                              alt="江博士"/></a></div>
-                            </li>
-                            <li class="col-5-1 last" data-animate="fadeInUp">
-                                <div class="link-img"><a href="#" target><img src="__IMG__/1-1610311032400-L.jpg"
-                                                                              alt="五粮液"/></a></div>
-                            </li>
+                            {/volist}
                         </ul>
                     </div>
                 </div>
