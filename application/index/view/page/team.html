@@ -134,73 +134,28 @@
 <div class="module-default">
 <div class="module-inner">
 <div id="a1portalSkin_ctr107131107131_mainArea" class="module-content">
-<div class="portfolio-list portfolio-list-summary">
-<ul class="column marg-per2 clearfix">
-<li class="col-4-1 fadeInUp animated" data-animate="fadeInUp">
-<div class="portfolio-img"><a href="/a/guanyuwomen/zhuanyetuandui/20161031/39.html" target="_blank"><img src="__IMG__/1.jpg" alt=""></a></div>
-<div class="portfolio-title">
-<h2><a href="/a/guanyuwomen/zhuanyetuandui/20161031/39.html" target="_blank">包志明</a></h2>
-</div>
- <div class="portfolio-summary">
-<div class="qhd-content">
-<p> 职务：摄影师<br>
-职称：国家中级摄影师</p>
-</div>
-</div>
-</li>
-<li class="col-4-1 fadeInUp animated" data-animate="fadeInUp">
-<div class="portfolio-img"><a href="/a/guanyuwomen/zhuanyetuandui/20161031/37.html" target="_blank"><img src="__IMG__/2.jpg" alt=""></a></div>
-<div class="portfolio-title">
-<h2><a href="/a/guanyuwomen/zhuanyetuandui/20161031/37.html" target="_blank">粱高</a></h2>
-</div>
-<div class="portfolio-summary">
-<div class="qhd-content">
-<p> 职务：摄影师<br>
-职称：国家中级摄影师</p>
-</div>
-</div>
-</li>
-<li class="col-4-1 fadeInUp animated" data-animate="fadeInUp">
-<div class="portfolio-img"><a href="/a/guanyuwomen/zhuanyetuandui/20161031/35.html" target="_blank"><img src="__IMG__/3.jpg" alt=""></a></div>
-<div class="portfolio-title">
-<h2><a href="/a/guanyuwomen/zhuanyetuandui/20161031/35.html" target="_blank">沈庆梅</a></h2>
-</div>
-<div class="portfolio-summary">
-<div class="qhd-content">
-<p> 职务：摄影师<br>
-职称：国家中级摄影师</p>
-</div>
-</div>
-</li>
-<li class="col-4-1 last fadeInUp animated" data-animate="fadeInUp">
-<div class="portfolio-img"><a href="/a/guanyuwomen/zhuanyetuandui/20161031/33.html" target="_blank"><img src="__IMG__/4.jpg" alt=""></a></div>
-<div class="portfolio-title">
-<h2><a href="/a/guanyuwomen/zhuanyetuandui/20161031/33.html" target="_blank">王美松</a></h2>
-</div>
-<div class="portfolio-summary">
-<div class="qhd-content">
-<p> 职务：创始人<br>
-职称：国际高级化妆师</p>
-</div>
-</div>
-</li>
-<li class="col-4-1 fadeInUp animated" data-animate="fadeInUp">
-<div class="portfolio-img"><a href="/a/guanyuwomen/zhuanyetuandui/20161031/32.html" target="_blank"><img src="__IMG__/5.jpg" alt=""></a></div>
-<div class="portfolio-title">
-<h2><a href="/a/guanyuwomen/zhuanyetuandui/20161031/32.html" target="_blank">陈建华</a></h2>
-</div>
-<div class="portfolio-summary">
-<div class="qhd-content">
-<p> 职务：创始人<br>
-职称：国家中级摄影师</p>
-</div>
-</div>
-</li>
-</ul>
-</div>
+    <div class="portfolio-list portfolio-list-summary">
+
+        <ul class="column marg-per2 clearfix">
+            {volist name='res' id='vo'}
+            <li class="col-4-1 fadeInUp animated" data-animate="fadeInUp">
+                <div class="portfolio-img"><a href="#" target="_blank"><img src="{$vo.pic}" alt=""></a></div>
+                <div class="portfolio-title">
+                <h2><a href="#" target="_blank">{$vo.title}</a></h2>
+                </div>
+                <div class="portfolio-summary">
+                <div class="qhd-content">
+                <p> 职务：{$vo.zhiwu}<br>
+                职称：{$vo.team}</p>
+                </div>
+                </div>
+            </li>
+            {/volist}
+        </ul>
+    </div>
 <div class="m-page">
 <ul class="pagelist">
-<li><span class="pageinfo">共 <strong>1</strong>页<strong>5</strong>条记录</span></li>
+<li>{$res->render()}</li>
 </ul>
 </div>
 </div>
@@ -218,11 +173,11 @@
 </div>
 <div id="a1portalSkin_ctr107134107134_mainArea" class="module-hlbg-content">
 <div class="category category-107134 article-category">
-<ul>
-<li class="current"><a href="#">公司简介</a><i></i></li>
-<li class><a href="#">专业团队</a><i></i></li>
-<li class><a href="#">人才招聘</a><i></i></li>
-</ul>
+  <ul>
+   {volist name='about' id='vo'}
+      <li {$Request.param.id ==$vo['id']?'class="current"':''}><a href="{$vo.type|makeurl=###,$vo['id']}">{$vo.name}</a><i></i></li>
+   {/volist}
+  </ul>
 </div>
 <script type="text/javascript">
  $(document).ready(function(){
@@ -246,13 +201,11 @@
 </div>
 <div id="a1portalSkin_ctr107130107130_mainArea" class="module-hlbg-content">
 <div class="category category-107130 article-category">
-<ul>
-<li class><a href="#" target>服装摄影</a><i></i></li>
-<li class><a href="#" target>产品摄影</a><i></i></li>
-<li class><a href="#" target>皮具摄影</a><i></i></li>
-<li class><a href="#" target>化妆品摄影</a><i></i></li>
-<li class><a href="#" target>珠宝饰品</a><i></i></li>
-</ul>
+   <ul>
+      {volist name='zuopin' id='vo'}
+      <li class><a href="{$vo.type|makeurl=###,$vo['id']}" target>{$vo.name}</a><i></i></li>
+      {/volist}
+   </ul>
 </div>
 <script type="text/javascript">
  $(document).ready(function(){

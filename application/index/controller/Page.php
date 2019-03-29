@@ -11,14 +11,34 @@ use think\Request;
 
 class Page extends Common
 {
+
+
+    /**
+    *****  初始化方法获取左侧栏目
+     ****
+     **/
+    public function _initialize(){
+        parent::_initialize();
+
+        $about = $this->getChildCate('about');
+        $zuopin = $this->getChildCate('zuopin');
+        $this->assign([
+            'about'     =>      $about,
+            'zuopin'    =>      $zuopin
+        ]);
+    }
     /**
      * 
-     *  关于我们
+     *  单页栏目
      *
      * @return \think\Response
      */
-    public function index()
+    public function index($id)
     {
+
+        $res = db('category')->field('id,mark,name,comment')->find($id);
+
+        $this->assign('pagedata',$res);
         return $this->fetch();
     }
 
@@ -27,8 +47,13 @@ class Page extends Common
      *
      * @return \think\Response
      */
-    public function team()
+    public function team($id)
     {
+
+        //获取数据
+        $res = db('article')->alias('t1')->field('t1.title,t1.id,t1.zhiwu,t1.team,t2.pic')->join('pics t2','t1.id=t2.aid','left')->where('cid',$id)->paginate(2);
+
+        $this->assign('res',$res);
         return $this->fetch();
     }
 

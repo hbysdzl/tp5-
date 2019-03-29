@@ -135,16 +135,9 @@
 <div class="module">
 <div class="module-inner">
 <div id="a1portalSkin_ctr107144107144_mainArea" class="module-content">
-<div class="qhd-content">
-<p>
-<span style="font-size:22px;">广州某某视觉摄影有限公司</span></p>
-<p>
-电话：400-123-4567<br/>
-传真：+86-123-4567<br/>
-邮箱：<a href="#" class="__cf_email__" data-cfemail="d0b1b4bdb9be90b4b5b4b5e5e8feb3bfbd">[email&#160;protected]</a><br/>
-微博：www.daxue518.com<br/>
-地址：天朝天堂路99号</p>
-</div>
+     <div class="qhd-content">
+          {$pagedata.comment}
+     </div>
 </div>
 </div>
 </div>
@@ -263,12 +256,11 @@
 </div>
 <div id="a1portalSkin_ctr107137107137_mainArea" class="module-hlbg-content">
 <div class="category category-107137 article-category">
-<ul>
-<li class="current"><a href="#">公司简介</a><i></i></li>
-<li><a href="#">专业团队</a><i></i></li>
-<li><a href="#">人才招聘</a><i></i></li>
-<li><a href="#">联系我们</a><i></i></li>
-</ul>
+    <ul>
+        {volist name='about' id='vo'}
+        <li {$Request.param.id==$vo['id']?'class="current"':''}><a href="{$vo.type|makeurl=###,$vo['id']}">{$vo.name}</a><i></i></li>
+        {/volist}
+    </ul>
 </div>
 <script type="text/javascript">
  $(document).ready(function(){
@@ -293,13 +285,11 @@
 </div>
 <div id="a1portalSkin_ctr107130107130_mainArea" class="module-hlbg-content">
 <div class="category category-107130 article-category">
-<ul>
-<li class><a href="#" target>服装摄影</a><i></i></li>
-<li class><a href="#" target>产品摄影</a><i></i></li>
-<li class><a href="#" target>皮具摄影</a><i></i></li>
-<li class><a href="#" target>化妆品摄影</a><i></i></li>
-<li class><a href="#" target>珠宝饰品</a><i></i></li>
-</ul>
+    <ul>
+        {volist name='zuopin' id='vo'}
+        <li class><a href="{$vo.type|makeurl=###,$vo['id']}" target>{$vo.name}</a><i></i></li>
+        {/volist}
+    </ul>
 </div>
 <script type="text/javascript">
  $(document).ready(function(){

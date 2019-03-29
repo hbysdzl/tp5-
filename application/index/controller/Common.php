@@ -86,4 +86,13 @@ class Common extends Controller
 		}
 	}
 
+
+	//获取左侧子栏目列表
+    protected function getChildCate($mark='about') {
+
+	    $res = db('category')->field('id,name,mark,type')->where('isshow','1')->where('mark',$mark)->select();
+
+	    return $res;
+    }
+
 }
