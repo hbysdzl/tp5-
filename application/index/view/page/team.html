@@ -123,7 +123,11 @@
 <div class="page-width clearfix">
  <section class="content float-right">
 <section class="page-title page-title-inner clearfix">
-<div class="breadcrumbs float-right" skinobjectzone="HtmlBreadCrumb_3806"><span>当前位置：</span><a href="/">主页</a> &gt;<a href="/a/guanyuwomen/gongsijianjie/">关于我们</a> &gt; <a href="/a/guanyuwomen/zhuanyetuandui/">专业团队</a> &gt; </div>
+<div class="breadcrumbs float-right" skinobjectzone="HtmlBreadCrumb_3806">
+    <span>当前位置：</span>
+        <a href="/">主页</a>
+        {$Request.param.id|getPosition=###}
+    </div>
 
 <div class="page-name float-left">
 <h2>专业团队</h2>
@@ -139,9 +143,9 @@
         <ul class="column marg-per2 clearfix">
             {volist name='res' id='vo'}
             <li class="col-4-1 fadeInUp animated" data-animate="fadeInUp">
-                <div class="portfolio-img"><a href="#" target="_blank"><img src="{$vo.pic}" alt=""></a></div>
+                <div class="portfolio-img"><a href="{:url('teamshow',['id'=>$vo['id']])}" target="_blank"><img src="{$vo.pic}" alt=""></a></div>
                 <div class="portfolio-title">
-                <h2><a href="#" target="_blank">{$vo.title}</a></h2>
+                <h2><a href="{:url('teamshow',['id'=>$vo['id']])}" target="_blank">{$vo.title}</a></h2>
                 </div>
                 <div class="portfolio-summary">
                 <div class="qhd-content">

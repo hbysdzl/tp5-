@@ -58,14 +58,20 @@ class Page extends Common
     }
 
     /**
-     * 保存新建的资源
+     * 专业团队详情页
      *
      * @param  \think\Request  $request
      * @return \think\Response
      */
-    public function save(Request $request)
+    public function teamShow(Request $request)
     {
-        //
+        //查出详情数据
+        $id = $request->param('id');
+
+        $descdata = db('article')->field('id,cid,title,keyword,desc,views,content,addtime')->find($id);
+
+        $this->assign('descdata',$descdata);
+        return $this->fetch();
     }
 
     /**

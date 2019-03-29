@@ -71,3 +71,29 @@ function makeurl($type=1,$id){
 
 	return $url;
 }
+
+
+/*
+ * 当前位置，面包屑
+ *
+ * @param  int当前所在的栏目id
+ * @return string当前位置
+ * */
+
+function getPosition($cid){
+
+    //查出当前的栏目信息
+    $cat = db('category')->field('id,name,pid')->find($cid);
+    $str = '';
+
+    if($cat){
+        $str = '> <a href="javascript:void(0)">'.$cat['name'].'</a>';
+        if ($cat['pid'] != 0){
+
+            //非顶级栏目
+            $parent = getPosition($cat['pid']);
+            $str = $parent.$str;
+        }
+        return $str;
+    }
+}

@@ -123,10 +123,13 @@
 <div class="page-width clearfix">
 <section class="content float-right">
 <section class="page-title page-title-inner clearfix">
-<div class="breadcrumbs float-right" skinobjectzone="HtmlBreadCrumb_3806"><span>当前位置：</span><a href="#">主页</a> > <a href="#">摄影作品</a> > <a href="#">服装摄影</a> > </div>
-
+<div class="breadcrumbs float-right" skinobjectzone="HtmlBreadCrumb_3806">
+    <span>当前位置：</span>
+        <a href="#">主页</a>
+        {$Request.param.id|getPosition=###}
+    </div>
  <div class="page-name float-left">
-<h2>服装摄影</h2>
+<h2>{$catename}</h2>
 </div>
 </section>
 
@@ -135,54 +138,20 @@
 <div class="module-inner">
 <div id="a1portalSkin_ctr107133107133_mainArea" class="module-content">
 <div class="portfolio-list">
-<ul class="column marg-per2 clearfix">
-<li class="col-4-1" data-animate="fadeInUp">
-<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311434290-L.jpg" alt/></a></div>
-<div class="portfolio-title">
-<h2><a href="#" target="_blank">服装摄影7</a></h2>
-</div>
-</li>
-<li class="col-4-1" data-animate="fadeInUp">
-<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311433020-L.jpg" alt/></a></div>
-<div class="portfolio-title">
-<h2><a href="#" target="_blank">服装摄影6</a></h2>
-</div>
-</li>
-<li class="col-4-1" data-animate="fadeInUp">
-<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311414430-L.jpg" alt/></a></div>
-<div class="portfolio-title">
-<h2><a href="#" target="_blank">服装摄影5</a></h2>
-</div>
-</li>
-<li class="col-4-1 last" data-animate="fadeInUp">
-<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311410590-L.jpg" alt/></a></div>
-<div class="portfolio-title">
-<h2><a href="#" target="_blank">服装摄影4</a></h2>
-</div>
-</li>
-<li class="col-4-1" data-animate="fadeInUp">
-<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311409420-L.jpg" alt/></a></div>
-<div class="portfolio-title">
-<h2><a href="#" target="_blank">服装摄影3</a></h2>
-</div>
-</li>
-<li class="col-4-1" data-animate="fadeInUp">
-<div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311406200-L.jpg" alt/></a></div>
-<div class="portfolio-title">
-<h2><a href="#" target="_blank">服装摄影2</a></h2>
-</div>
-</li>
-<li class="col-4-1" data-animate="fadeInUp">
- <div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311402280-L.jpg" alt/></a></div>
-<div class="portfolio-title">
-<h2><a href="#" target="_blank">服装摄影1</a></h2>
-</div>
-</li>
-</ul>
+   <ul class="column marg-per2 clearfix">
+     {volist name='data' id='vo'}
+      <li class="col-4-1" data-animate="fadeInUp">
+          <div class="portfolio-img"><a href="{:url('showwork',['id'=>$vo['id']])}" target="_blank"><img src="{$vo.pic}" alt/></a></div>
+         <div class="portfolio-title">
+         <h2><a href="{:url('showwork',['id'=>$vo['id']])}" target="_blank">{$vo.title}</a></h2>
+         </div>
+      </li>
+      {/volist}
+   </ul>
 </div>
 <div class="m-page">
 <ul class="pagelist">
-<li><span class="pageinfo">共 <strong>1</strong>页<strong>7</strong>条记录</span></li>
+{$data->render()}
 </ul>
 </div>
  </div>
@@ -200,13 +169,11 @@
 </div>
 <div id="a1portalSkin_ctr107134107134_mainArea" class="module-hlbg-content">
 <div class="category category-107134 article-category">
-<ul>
-<li class="current"><a href="#">服装摄影</a><i></i></li>
-<li class><a href="#">产品摄影</a><i></i></li>
-<li class><a href="#">皮具摄影</a><i></i></li>
-<li class><a href="#">化妆品摄影</a><i></i></li>
-<li class><a href="#">珠宝饰品</a><i></i></li>
-</ul>
+    <ul>
+        {volist name='zuopin' id='vo'}
+        <li {$Request.param.id == $vo['id']?'class="current"':''}><a href="{$vo.type|makeurl=###,$vo.id}">{$vo.name}</a><i></i></li>
+        {/volist}
+    </ul>
 </div>
 <script type="text/javascript">
  $(document).ready(function(){

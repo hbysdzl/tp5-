@@ -124,7 +124,11 @@
 <div class="page-width clearfix">
 <section class="content float-right">
 <section class="page-title page-title-inner clearfix">
-<div class="breadcrumbs float-right" skinobjectzone="HtmlBreadCrumb_3806"><span>当前位置：</span><a href="#">主页</a> > <a href="#">关于我们</a> > <a href="#">联系我们</a></div>
+    <div class="breadcrumbs float-right" skinobjectzone="HtmlBreadCrumb_3806">
+        <span>当前位置：</span>
+        <a href="#">主页</a>
+        {$pagedata.id|getPosition=###}
+    </div>
 
 <div class="page-name float-left">
 <h2>关于我们</h2>
