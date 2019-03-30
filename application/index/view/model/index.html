@@ -126,10 +126,14 @@
 <div class="page-width clearfix">
  <section class="content float-right">
   <section class="page-title page-title-inner clearfix">
-   <div class="breadcrumbs float-right" skinobjectzone="HtmlBreadCrumb_3806"><span>当前位置：</span><a href="/">主页</a> &gt; <a href="/a/moteziliao/guonanvmote/">模特资料</a> &gt; <a href="/a/moteziliao/guonanvmote/">国内女模特</a> &gt; </div>
+   <div class="breadcrumbs float-right" skinobjectzone="HtmlBreadCrumb_3806">
+    <span>当前位置：</span>
+     <a href="/">主页</a>
+     {$Request.param.id|getPosition=###}
+   </div>
 
    <div class="page-name float-left">
-    <h2>国内女模特</h2>
+    <h2>{$catename.name}</h2>
    </div>
   </section>
 
@@ -139,77 +143,24 @@
      <div id="a1portalSkin_ctr107136107136_mainArea" class="module-content">
       <div class="portfolio-list portfolio-list-summary">
        <ul class="column clearfix">
-        <li class="col-3-1 fadeInUp animated" data-animate="fadeInUp">
-         <div class="portfolio-img"><a href="/#" target="_blank"><img src="__IMG__/1.jpg" alt=""></a></div>
+        {volist name='list' id='vo' mod='3'}
+        <li class="col-3-1 {eq name='mod' value='2'}last{/eq} fadeInUp animated" data-animate="fadeInUp">
+         <div class="portfolio-img"><a href="{:url('showmodel',['id'=>$vo['id']])}" target="_blank"><img src="{$vo.pic}" alt="{$vo.title}"></a></div>
          <div class="portfolio-title">
-          <h2><a href="#" target="_blank">国内女模M818</a></h2>
+          <h2><a href="{:url('showmodel',['id'=>$vo['id']])}" target="_blank">{$vo.title}</a></h2>
          </div>
          <div class="portfolio-summary">
           <div class="qhd-content">
-           <p>身高: 171cm 体重： 52kg 三围： 88/62/89 鞋码： 38码 衣服： m码</p>
+           <p>{$vo.model}</p>
           </div>
          </div>
         </li>
-        <li class="col-3-1 fadeInUp animated" data-animate="fadeInUp">
-         <div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/2.jpg" alt=""></a></div>
-         <div class="portfolio-title">
-          <h2><a href="#" target="_blank">国内女模M817</a></h2>
-         </div>
-         <div class="portfolio-summary">
-          <div class="qhd-content">
-           <p>身高：169 cm 三围：85-63-85 体重：48.0 kg 鞋码：38 码 罩杯：75CC</p>
-          </div>
-         </div>
-        </li>
-        <li class="col-3-1 last fadeInUp animated" data-animate="fadeInUp">
-         <div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/3.jpg" alt=""></a></div>
-         <div class="portfolio-title">
-          <h2><a href="#" target="_blank">国内女模M819</a></h2>
-         </div>
-         <div class="portfolio-summary">
-          <div class="qhd-content">
-           <p>身高：167cm 体重：46kg 腿长：82cm 发长：60cm 三围：82-60-88/cm 鞋码：38码</p>
-          </div>
-         </div>
-        </li>
-        <li class="col-3-1 fadeInUp animated" data-animate="fadeInUp">
-         <div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/4.jpg" alt=""></a></div>
-         <div class="portfolio-title">
-          <h2><a href="#" target="_blank">国内女模M820</a></h2>
-         </div>
-         <div class="portfolio-summary">
-          <div class="qhd-content">
-           <p>身高：171cm 体重：90斤 三围：82-60- 86 腿长：102cm 衣码：S 鞋码：35/36码</p>
-          </div>
-         </div>
-        </li>
-        <li class="col-3-1 fadeInUp animated" data-animate="fadeInUp">
-         <div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/5.jpg" alt=""></a></div>
-         <div class="portfolio-title">
-          <h2><a href="#" target="_blank">国内女模M701</a></h2>
-         </div>
-         <div class="portfolio-summary">
-          <div class="qhd-content">
-           <p>身高：167cm 体重：46kg 腿长：82cm 发长：60cm 三围：82-60-88/cm 鞋码：38码</p>
-          </div>
-         </div>
-        </li>
-        <li class="col-3-1 last fadeInUp animated" data-animate="fadeInUp">
-         <div class="portfolio-img"><a href="#" target="_blank"><img src="__IMG__/6.jpg" alt=""></a></div>
-         <div class="portfolio-title">
-          <h2><a href="#" target="_blank">国内女模M702</a></h2>
-         </div>
-         <div class="portfolio-summary">
-          <div class="qhd-content">
-           <p>身高：166cm 体重：48kg 三围：82-64-88 衣码：S 裤码：26/M 鞋码：36</p>
-          </div>
-         </div>
-        </li>
+        {/volist}
        </ul>
       </div>
       <div class="m-page">
        <ul class="pagelist">
-        <li><span class="pageinfo">共 <strong>1</strong>页<strong>6</strong>条记录</span></li>
+        {$list->render()}
        </ul>
       </div>
      </div>
@@ -227,12 +178,11 @@
 </div>
 <div id="a1portalSkin_ctr107134107134_mainArea" class="module-hlbg-content">
 <div class="category category-107134 article-category">
-<ul>
-<li class="current"><a href="#">国内女模特</a><i></i></li>
-<li class><a href="#">国内男模特</a><i></i></li>
-<li class><a href="#">国外女模特</a><i></i></li>
-<li class><a href="#">国外男模特</a><i></i></li>
-</ul>
+  <ul>
+     {volist name='leftMenu' id='vo'}
+     <li {$Request.param.id == $vo.id? 'class="current"':''}><a href="{$vo.type|makeurl=###,$vo.id}">{$vo.name}</a><i></i></li>
+     {/volist}
+  </ul>
 </div>
 <script type="text/javascript">
  $(document).ready(function(){

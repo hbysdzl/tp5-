@@ -26,7 +26,10 @@ class Article extends Common
             $map = [];
         }
         //获取数据
-        $data = model('Article')->alias('a')->field('a.*,c.name,count(p.pic) picnum')->join('category c','a.cid=c.id')->order('istop desc,toptime desc,addtime desc')->join('pics p','a.id=p.aid','left')->group('a.id')->where($map)->paginate(3,false,['query'=>['cid'=>$cid]]);
+        $data = model('Article')->alias('a')->field('a.*,c.name,count(p.pic) picnum')
+                ->join('category c','a.cid=c.id')->order('istop desc,toptime desc,addtime desc')
+                ->join('pics p','a.id=p.aid','left')->group('a.id')->where($map)
+                ->paginate(10,false,['query'=>['cid'=>$cid]]);
         //dump($data);
 
         //取出栏目数据
