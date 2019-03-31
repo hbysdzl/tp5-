@@ -97,3 +97,37 @@ function getPosition($cid){
         return $str;
     }
 }
+
+/*
+ * 获取内容也banner图片
+ *
+ * @param int 当前所属栏目id
+ * @return string 当前banner图片的路径
+ *
+ * */
+
+function getBannerpic($id){
+
+    //获取当前栏目的图片
+    $result = db('category')->field('id,pid,pic')->find($id);
+    //如果栏目不存在则返回空
+    if(!$result){
+        $strimg = '';
+        return $strimg;
+    }
+
+    //如果当前栏目图片不存在则使用其上级栏目图片
+    if ($result['pic'] == ''){
+
+        return getBannerpic($result['pid']);
+
+    }
+
+    //如果存在多张图片
+    if(stripos($result['pic'],',')){
+        $arrimg = explode(',',$result['pic']);
+        return $arrimg[0];
+    }
+
+    return $result['pic'];
+}

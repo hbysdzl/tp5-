@@ -99,7 +99,7 @@
                 <div class="slideshow slideshow-min carousel clearfix" style="height:450px; overflow:hidden;">
                     <div id="carousel-107146">
                         <div class="carousel-item">
-                            <div class="carousel-img"><a href="javascript:;" target><img src="{$descdata.cid|getBannerpic=###}" height="450" alt="{$descdata.title}"/></a></div>
+                            <div class="carousel-img"><a href="javascript:;" target><img src="{$data.cid|getBannerpic=###}" height="450" alt="联系我们"/></a></div>
                         </div>
                     </div>
                     <div class="carousel-btn carousel-btn-fixed" id="carousel-page-107146"></div>
@@ -127,11 +127,11 @@
                 <div class="breadcrumbs float-right" skinobjectzone="HtmlBreadCrumb_3806">
                     <span>当前位置：</span>
                     <a href="#">主页</a>
-                    {$descdata.cid|getPosition=###}
+                    {$data.cid|getPosition=###}
                 </div>
 
                 <div class="page-name float-left">
-                    <h2>{$descdata.title}</h2>
+                    <h2>{$data.title}</h2>
                 </div>
             </section>
 
@@ -140,7 +140,7 @@
                     <div class="module-inner">
                         <div id="a1portalSkin_ctr107144107144_mainArea" class="module-content">
                             <div class="qhd-content">
-                                {$descdata.content}
+                                {$data.content}
                             </div>
                         </div>
                     </div>
@@ -262,8 +262,8 @@
                         <div id="a1portalSkin_ctr107130107130_mainArea" class="module-hlbg-content">
                             <div class="category category-107130 article-category">
                                 <ul>
-                                    {volist name='leftMenu' id='vo'}
-                                    <li {$descdata.cid == $vo.id? 'class="current"':''}><a href="{$vo.type|makeurl=###,$vo['id']}" target>{$vo.name}</a><i></i></li>
+                                    {volist name='leftnews' id='vo'}
+                                    <li {$data.cid == $vo.id? 'class="current"':''}><a href="{$vo.type|makeurl=###,$vo['id']}" target>{$vo.name}</a><i></i></li>
                                     {/volist}
                                 </ul>
                             </div>

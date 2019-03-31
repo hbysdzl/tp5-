@@ -99,7 +99,7 @@
 <div class="slideshow slideshow-min carousel clearfix" style="height:450px; overflow:hidden;">
 <div id="carousel-107142">
 <div class="carousel-item">
-<div class="carousel-img"><a href="javascript:;" target><img src="__IMG__/18.jpg" height="450" alt="公司新闻"/></a></div>
+<div class="carousel-img"><a href="javascript:;" target><img src="{$Request.param.id|getBannerpic=###}" height="450" alt="公司新闻"/></a></div>
 </div>
 </div>
 <div class="carousel-btn carousel-btn-fixed" id="carousel-page-107142"></div>
@@ -137,86 +137,28 @@
 <div id="a1portalSkin_ctr107141107141_mainArea" class="module-content">
 <div class="entry-list entry-list-article entry-list-mobile">
 
-<div class="entry-item">
-<div class="typo">
-<div class="typo-img">
-<div class="entry-img"><a href="#" target="_blank"><img src="__IMG__/1-161031154F10-L.jpg" width="220" alt="电商摄影的探讨：眼球决定购买率"/></a></div>
-</div>
 
-<div class="typo-text">
-<div class="entry-title">
-<h2><a href="#" target="_blank">电商摄影的探讨：眼球决定购买率</a></h2>
-</div>
-<div class="news-info" style="font-size:.95em;color:#AAA;"><span>作者：易风课堂</span><span>发布时间：2017/9/6</span><span>点击次数：299次</span></div>
-<div class="entry-summary">
-<div class="qhd-content">
-<p> 众所周知，传统经济交易行为产生的基础是：产品的质量、产品的外观、服务的质量和口碑 九十年代以来，随着互联网和移动互联网的发展，新的交易形式出现了很大的改变，并喷薄式...</p>
-</div>
-</div>
-</div>
-</div>
-</div>
+    {volist name='newslist' id='vo'}
+    <div class="entry-item">
+       <div class="typo">
+       <div class="typo-img">
+       <div class="entry-img"><a href="{:url('shownews',['id'=>$vo['id']])}" target="_blank"><img src="{$vo.pic}" width="220" alt="{$vo.title}"/></a></div>
+       </div>
 
-<div class="entry-item">
-<div class="typo">
-<div class="typo-img">
-<div class="entry-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311546160-L.jpg" width="220" alt="户外运动对抗赛 - 羽毛球分组对抗赛"/></a></div>
-</div>
-
-<div class="typo-text">
-<div class="entry-title">
-<h2><a href="#" target="_blank">户外运动对抗赛 - 羽毛球分组对抗赛</a></h2>
-</div>
-<div class="news-info" style="font-size:.95em;color:#AAA;"><span>作者：易风课堂</span><span>发布时间：2017/9/6</span><span>点击次数：299次</span></div>
-<div class="entry-summary">
-<div class="qhd-content">
-<p> 摄影对于很多人来说都是现在生活中最享受的一种娱乐方式，但是对于我们商业摄影行业来说，摄影是每天的工作，这份工作同样担负着责任和压力，我们在工作之余，不断地以其他方...</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<div class="entry-item">
-<div class="typo">
-<div class="typo-img">
-<div class="entry-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311545320-L.jpg" width="220" alt="记者年会小访"/></a></div>
-</div>
-
-<div class="typo-text">
-<div class="entry-title">
-<h2><a href="#" target="_blank">记者年会小访</a></h2>
-</div>
-<div class="news-info" style="font-size:.95em;color:#AAA;"><span>作者：易风课堂</span><span>发布时间：2017/9/6</span><span>点击次数：299次</span></div>
-<div class="entry-summary">
-<div class="qhd-content">
-<p> 如今提到卖产品，很多人都会想到在网上卖了，于是大家可能都会想到同一个问题，我们到哪里找人帮我们产品拍照呢？一般人看得多的是普通的照相馆，有些人还想找婚纱摄影公司，...</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<div class="entry-item">
-<div class="typo">
-<div class="typo-img">
-<div class="entry-img"><a href="#" target="_blank"><img src="__IMG__/1-1610311542230-L.png" width="220" alt="公司受邀参加CCTV《奋斗》栏目组访谈"/></a></div>
-</div>
-
-<div class="typo-text">
-<div class="entry-title">
-<h2><a href="#" target="_blank">公司受邀参加CCTV《奋斗》栏目组访谈</a></h2>
-</div>
-<div class="news-info" style="font-size:.95em;color:#AAA;"><span>作者：易风课堂</span><span>发布时间：2017/9/6</span><span>点击次数：299次</span></div>
-<div class="entry-summary">
-<div class="qhd-content">
-<p> 【栏目名称】 CCTV《奋斗》栏目组 【主 持 人】：阿 丘 【嘉 宾】：田雲娴 王者顶级珠宝国际连锁企业集团总裁 田雲娴国际教育机构 董事长 北京市国清律师事务所律师 【记者编导】：...</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-
+       <div class="typo-text">
+       <div class="entry-title">
+       <h2><a href="{:url('shownews',['id'=>$vo['id']])}" target="_blank">{$vo.title}</a></h2>
+       </div>
+       <div class="news-info" style="font-size:.95em;color:#AAA;"><span>作者：{$vo.author}</span><span>发布时间：{$vo.addtime|date='Y/m/d H:i:s',###}</span><span>点击次数：{$vo.views}次</span></div>
+       <div class="entry-summary">
+       <div class="qhd-content">
+       <p> {$vo.remark}：...</p>
+       </div>
+       </div>
+       </div>
+       </div>
+    </div>
+    {/volist}
 </div>
 </div>
 </div>
@@ -233,10 +175,11 @@
 </div>
 <div id="a1portalSkin_ctr107137107137_mainArea" class="module-hlbg-content">
 <div class="category category-107137 article-category">
-<ul>
-<li class="current"><a href="#">公司新闻</a><i></i></li>
-<li class><a href="#">摄影学堂</a><i></i></li>
-</ul>
+ <ul>
+  {volist name='leftnews' id='vo'}
+   <li {$Request.param.id == $vo['id']? 'class="current"':''}><a href="{$vo.type|makeurl=###,$vo.id}">{$vo.name}</a><i></i></li>
+  {/volist}
+ </ul>
 </div>
 <script type="text/javascript">
  $(document).ready(function(){
@@ -261,13 +204,11 @@
 </div>
 <div id="a1portalSkin_ctr107130107130_mainArea" class="module-hlbg-content">
 <div class="category category-107130 article-category">
-<ul>
-<li class><a href="#" target>服装摄影</a><i></i></li>
-<li class><a href="#" target>产品摄影</a><i></i></li>
-<li class><a href="#" target>皮具摄影</a><i></i></li>
-<li class><a href="#" target>化妆品摄影</a><i></i></li>
-<li class><a href="#" target>珠宝饰品</a><i></i></li>
-</ul>
+   <ul>
+       {volist name='zuopin' id='vo'}
+       <li class><a href="{$vo.type|makeurl=###,$vo.id}" target>{$vo.name}</a><i></i></li>
+       {/volist}
+   </ul>
 </div>
 <script type="text/javascript">
  $(document).ready(function(){
