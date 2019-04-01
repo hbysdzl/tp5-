@@ -37,7 +37,10 @@ class Page extends Common
     {
 
         $res = db('category')->field('id,mark,name,comment')->find($id);
-
+        if(!$res){
+            //手动抛出异常
+            abort('404');
+        }
         $this->assign('pagedata',$res);
         return $this->fetch();
     }
@@ -52,7 +55,10 @@ class Page extends Common
 
         //获取数据
         $res = db('article')->alias('t1')->field('t1.title,t1.id,t1.zhiwu,t1.team,t2.pic')->join('pics t2','t1.id=t2.aid','left')->where('cid',$id)->paginate(2);
-
+        if(!count($res)){
+            //手动抛出异常
+            abort('404');
+        }
         $this->assign('res',$res);
         return $this->fetch();
     }
@@ -69,7 +75,10 @@ class Page extends Common
         $id = $request->param('id');
 
         $descdata = db('article')->field('id,cid,title,keyword,desc,views,content,addtime')->find($id);
-
+        if (!$descdata){
+            //手动抛出异常
+            abort('404');
+        }
         $this->assign('descdata',$descdata);
         return $this->fetch();
     }

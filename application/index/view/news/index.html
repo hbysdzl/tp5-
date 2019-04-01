@@ -142,12 +142,12 @@
     <div class="entry-item">
        <div class="typo">
        <div class="typo-img">
-       <div class="entry-img"><a href="{:url('shownews',['id'=>$vo['id']])}" target="_blank"><img src="{$vo.pic}" width="220" alt="{$vo.title}"/></a></div>
+       <div class="entry-img"><a href="{:url('index/news/shownews',['id'=>$vo['id']])}" target="_blank"><img src="{$vo.pic}" width="220" alt="{$vo.title}"/></a></div>
        </div>
 
        <div class="typo-text">
        <div class="entry-title">
-       <h2><a href="{:url('shownews',['id'=>$vo['id']])}" target="_blank">{$vo.title}</a></h2>
+       <h2><a href="{:url('index/news/shownews',['id'=>$vo['id']])}" target="_blank">{$vo.title}</a></h2>
        </div>
        <div class="news-info" style="font-size:.95em;color:#AAA;"><span>作者：{$vo.author}</span><span>发布时间：{$vo.addtime|date='Y/m/d H:i:s',###}</span><span>点击次数：{$vo.views}次</span></div>
        <div class="entry-summary">
