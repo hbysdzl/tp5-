@@ -34,6 +34,10 @@ class Works extends Common {
         $catename = db('category')->field('name')->find($id);
 	    //获取摄影作品数据
 	    $data = db('article')->alias('t1')->field('t1.title,t1.id,t2.pic')->join('pics t2','t1.id=t2.aid','left')->where('t1.cid',$id)->paginate(2);
+	    if(!count($data)){
+	        //手动抛出异常
+            abort('404');
+        }
 	    $this->assign('catename',$catename['name']);
 	    $this->assign('data',$data);
 		return $this->fetch();
