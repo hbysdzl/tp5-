@@ -13,6 +13,7 @@ class Index extends Common
 	//首页
     public function index()
     {	
+        
     	$banner = $this->getBanner();
     	$about = $this->getAbout();
         $work = $this->getWorks();
@@ -83,6 +84,8 @@ class Index extends Common
 
         return $res;
     }
+
+
 
 
 }

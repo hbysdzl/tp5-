@@ -236,6 +236,6 @@ class Article extends Common
 
         $this->error('删除失败！');
     }
-
+    
 
 }

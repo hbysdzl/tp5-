@@ -112,3 +112,20 @@ create table qi_banner (
 	primary key(id),
 	key title(title)
  )engine=innodb default charset=utf8;
+
+-- 会员表
+
+create table kd_member(
+	id int unsigned not null auto_increment comment 'ID',
+	truename varchar(32) not null default '' comment '姓名',
+	phone varchar(13) not null default '' comment '手机号',
+	openid varchar(100) not null default '' comment 'openid',
+	nikname varchar(100) not null default '' comment '微信昵称',
+	sex enum('0','1') not null default '0' comment '性别',
+	face varchar(255) not null default '' comment '头像',
+	addr varchar(32) not null default '地区' comment '地区',
+	status enum('1','0','-1') not null default '1' comment '状态',
+    primary key (id),
+    unique index (openid),
+    index (phone)
+)engine=innodb default charset=utf8;
